@@ -60,10 +60,10 @@ export default function CardDetail () {
         <div className='column is-12'>
           <div className='field is-grouped'>
             <div className='control is-expanded'>
-              <input className='input' type='text' placeholder='Enter your email' />
+              <textarea className='textarea is-rounded' rows="1" type='text' placeholder='Enter your email' />
             </div>
             <div className='control'>
-              <a className='button is-info'>Comentar</a>
+              <a className='button is-rounded is-info'>Comentar</a>
             </div>
           </div>
         </div>

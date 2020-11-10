@@ -6,10 +6,7 @@ export default function Navbar () {
       <div className='navbar-brand'>
         <a className='navbar-item'>
           <img
-            src='https://bulma.io/images/bulma-logo.png'
-            width='112'
-            height='28'
-            alt='Bulma'
+            src='logo.png' 
           />
         </a>
       </div>
@@ -17,7 +14,7 @@ export default function Navbar () {
         <div className='navbar-item'>
           <div className='control has-icons-left'>
             <input
-              className='input is-small has-text-centered'
+              className='input is-rounded is-small has-text-centered'
               type='text'
               placeholder='search'
             />
@@ -28,7 +25,7 @@ export default function Navbar () {
         </div>
       </div>
       <div className='navbar-item is-flex-touch'>
-        <Link to='/'>
+        <Link to='/register'>
           {' '}
           <a className='navbar-item'>
             <i className='material-icons'>explore</i>

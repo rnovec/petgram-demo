@@ -1,3 +1,7 @@
+* {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 .navbar {
     position: fixed;
     left: 0;
