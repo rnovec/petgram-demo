@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Navbar () {
   return (
     <div className='navbar is-inline-flex is-transparent'>
@@ -26,15 +28,19 @@ export default function Navbar () {
         </div>
       </div>
       <div className='navbar-item is-flex-touch'>
-        <a className='navbar-item'>
-          <i className='material-icons'>explore</i>
-        </a>
+        <Link to='/'>
+          {' '}
+          <a className='navbar-item'>
+            <i className='material-icons'>explore</i>
+          </a>
+        </Link>
+
         <a className='navbar-item'>
           <i className='material-icons'>favorite_border</i>
         </a>
-        <a className='navbar-item'>
+        <Link className='navbar-item' to='/login'>
           <i className='material-icons'>person_outline</i>
-        </a>
+        </Link>
       </div>
     </div>
   )

@@ -2,6 +2,7 @@ import React from 'react'
 import CardDetail from '../components/CardDetail'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import '../css/index.css'
 
 export default function Home () {
   return (

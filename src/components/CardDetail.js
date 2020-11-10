@@ -53,17 +53,17 @@ export default function CardDetail () {
           <a>@bulmaio</a>.<a href='#'>#css</a>
           <a href='#'>#responsive</a>
           <br />
-          <time datetime='2018-1-1'>11:09 PM - 1 Jan 2018</time>
+          <time dateTime='2018-1-1'>11:09 PM - 1 Jan 2018</time>
         </div>
       </div>
       <div className='card-footer'>
         <div className='column is-12'>
-          <div class='field is-grouped'>
-            <div class='control is-expanded'>
-              <input class='input' type='text' placeholder='Enter your email' />
+          <div className='field is-grouped'>
+            <div className='control is-expanded'>
+              <input className='input' type='text' placeholder='Enter your email' />
             </div>
-            <div class='control'>
-              <a class='button is-info'>Comentar</a>
+            <div className='control'>
+              <a className='button is-info'>Comentar</a>
             </div>
           </div>
         </div>
