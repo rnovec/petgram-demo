@@ -30,7 +30,7 @@ export default function Register () {
                     <input
                       className='input is-rounded'
                       type='text'
-                      placeholder='Name'
+                      placeholder='Username'
                     />
                   </div>
                 </div>

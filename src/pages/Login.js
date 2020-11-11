@@ -1,21 +1,49 @@
-import ReactDOM from 'react-dom'
+import React, { useState, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import '../css/login.css'
+import { AuthContext } from '../context/auth'
 
 export default function Login () {
+  const history = useHistory()
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const { authenticate } = useContext(AuthContext)
+
+  function onChangeUsername (e) {
+    setUsername(e.target.value)
+    e.preventDefault()
+  }
+
+  function onChangePassword (e) {
+    setPassword(e.target.value)
+    e.preventDefault()
+  }
+
+  function onSumbit (e) {
+    console.log(username, password)
+    authenticate({ username, password }).then(() => {
+      history.push('/')
+    })
+
+    e.preventDefault()
+  }
+
   return (
     <section className='hero is-fullheight'>
       <div className='hero-body has-text-centered'>
         <div className='login'>
           <img src='https://logoipsum.com/logo/logo-12.svg' width='325px' />
-          <form>
+          <form onSubmit={onSumbit}>
             <div className='field'>
               <div className='control'>
                 <input
                   className='input is-rounded'
-                  type='email'
-                  placeholder='hello@example.com'
-                  autocomplete='username'
+                  type='text'
+                  placeholder='Username'
+                  autoComplete='username'
+                  onChange={onChangeUsername}
                   required
                 />
               </div>
@@ -26,7 +54,8 @@ export default function Login () {
                   className='input is-rounded'
                   type='password'
                   placeholder='**********'
-                  autocomplete='current-password'
+                  onChange={onChangePassword}
+                  autoComplete='current-password'
                   required
                 />
               </div>

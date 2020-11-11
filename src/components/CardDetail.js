@@ -6,7 +6,7 @@ export default function CardDetail () {
           <div className='media-left'>
             <figure className='image is-48x48'>
               <img
-                className="is-rounded"
+                className='is-rounded'
                 src='https://source.unsplash.com/random/96x96'
                 alt='Placeholder'
               />
@@ -60,10 +60,17 @@ export default function CardDetail () {
         <div className='column is-12'>
           <div className='field is-grouped'>
             <div className='control is-expanded'>
-              <textarea className='textarea is-rounded' rows="1" type='text' placeholder='Enter your email' />
+              <textarea
+                className='textarea is-rounded'
+                rows='1'
+                type='text'
+                placeholder='Enter your email'
+              />
             </div>
             <div className='control'>
-              <a className='button is-rounded is-info'>Comentar</a>
+              <a className='button is-rounded is-info'>
+                <i className='material-icons'>send</i>
+              </a>
             </div>
           </div>
         </div>
