@@ -32,15 +32,13 @@ export default function Navbar () {
         </div>
       </div>
       <div className='navbar-item is-flex-touch'>
+        <Link className='navbar-item' to='/'>
+          <i className='material-icons'>home</i>
+        </Link>
         <Link to='/profile'>
-          {' '}
           <a className='navbar-item'>
             <i className='material-icons'>person_outline</i>
           </a>
-        </Link>
-
-        <Link className='navbar-item' to='/settings'>
-          <i className='material-icons'>settings</i>
         </Link>
         <a className='navbar-item' onClick={handleLogout}>
           <i className='material-icons has-text-danger'>logout</i>

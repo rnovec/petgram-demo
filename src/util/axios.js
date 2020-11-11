@@ -3,7 +3,10 @@ import { getToken } from './auth'
 
 // create singleton for axios
 const _axios = axios.create({
-  baseURL: 'http://localhost:8000/api/v1',
+  baseURL:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:8000/api/v1'
+      : 'https://petgram-demo.herokuapp.com/api/v1',
   mode: 'cors',
   credentials: 'same-origin',
   timeout: 20000
