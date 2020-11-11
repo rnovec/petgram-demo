@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getToken } from './auth'
 
 // create singleton for axios
 const _axios = axios.create({
@@ -9,6 +10,11 @@ const _axios = axios.create({
 })
 
 _axios.interceptors.request.use(config => {
+  const token = getToken()
+  console.log(config)
+  if (!config.public) {
+    config.headers.Authorization = 'Bearer ' + token
+  }
   return config
 })
 

@@ -7,38 +7,39 @@ import '../css/register.css'
 
 export default function Register () {
   const history = useHistory()
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [password_confirm, setConfirm] = useState('')
+  const [user, setUser] = useState({
+    username: '',
+    first_name: '',
+    email: '',
+    password: '',
+    password_confirm: ''
+  })
 
   function onChangeUsername (e) {
-    setUsername(e.target.value)
+    setUser({ ...user, username: e.target.value })
+  }
+
+  function onChangeName (e) {
+    setUser({ ...user, first_name: e.target.value })
   }
 
   function onChangeEmail (e) {
-    setEmail(e.target.value)
+    setUser({ ...user, email: e.target.value })
   }
 
   function onChangePassword (e) {
-    setPassword(e.target.value)
+    setUser({ ...user, password: e.target.value })
   }
 
   function onChangeConfirm (e) {
-    setConfirm(e.target.value)
+    setUser({ ...user, password_confirm: e.target.value })
   }
 
   async function onSubmit (e) {
     e.preventDefault()
     try {
-      const user = {
-        username,
-        email,
-        password,
-        password_confirm
-      }
-      console.log(user)
       const res = await register(user)
+      history.push('/')
     } catch (error) {
       console.log(error)
     }
@@ -69,6 +70,11 @@ export default function Register () {
                   autocomplete='username'
                   placeholder='Username'
                   onChange={onChangeUsername}
+                />
+                <Input
+                  autocomplete='first_name'
+                  placeholder='Fullname'
+                  onChange={onChangeName}
                 />
                 <Input
                   autocomplete='email'

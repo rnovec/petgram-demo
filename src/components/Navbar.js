@@ -1,6 +1,15 @@
-import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { AuthContext } from '../context/auth'
 
 export default function Navbar () {
+  const history = useHistory()
+  const { logout } = useContext(AuthContext)
+
+  function handleLogout () {
+    logout()
+    history.push('/login')
+  }
   return (
     <div className='navbar is-inline-flex is-transparent'>
       <div className='navbar-brand'>
@@ -33,9 +42,9 @@ export default function Navbar () {
         <Link className='navbar-item' to='/settings'>
           <i className='material-icons'>settings</i>
         </Link>
-        <Link className='navbar-item' to='/login'>
+        <a className='navbar-item' onClick={handleLogout}>
           <i className='material-icons has-text-danger'>logout</i>
-        </Link>
+        </a>
       </div>
     </div>
   )

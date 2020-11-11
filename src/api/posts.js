@@ -4,6 +4,7 @@ export function createPost (data) {
   return request({
     url: '/posts',
     method: 'POST',
+    headers: { 'Content-Type': 'multipart/form-data' },
     data
   })
 }
