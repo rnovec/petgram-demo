@@ -1,8 +1,48 @@
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-
+import { register } from '../api/users'
+import Input from '../components/Input'
 import '../css/register.css'
 
 export default function Register () {
+  const history = useHistory()
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [password_confirm, setConfirm] = useState('')
+
+  function onChangeUsername (e) {
+    setUsername(e.target.value)
+  }
+
+  function onChangeEmail (e) {
+    setEmail(e.target.value)
+  }
+
+  function onChangePassword (e) {
+    setPassword(e.target.value)
+  }
+
+  function onChangeConfirm (e) {
+    setConfirm(e.target.value)
+  }
+
+  async function onSubmit (e) {
+    e.preventDefault()
+    try {
+      const user = {
+        username,
+        email,
+        password,
+        password_confirm
+      }
+      console.log(user)
+      const res = await register(user)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <section className='section container'>
       <div className='columns is-multiline'>
@@ -24,26 +64,30 @@ export default function Register () {
               <p className='description'>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit
               </p>
-              <form>
-                <div className='field'>
-                  <div className='control'>
-                    <input
-                      className='input is-rounded'
-                      type='text'
-                      placeholder='Username'
-                    />
-                  </div>
-                </div>
-
-                <div className='field'>
-                  <div className='control'>
-                    <input
-                      className='input is-rounded'
-                      type='email'
-                      placeholder='Email'
-                    />
-                  </div>
-                </div>
+              <form onSubmit={onSubmit}>
+                <Input
+                  autocomplete='username'
+                  placeholder='Username'
+                  onChange={onChangeUsername}
+                />
+                <Input
+                  autocomplete='email'
+                  type='email'
+                  placeholder='Email'
+                  onChange={onChangeEmail}
+                />
+                <Input
+                  autocomplete='password'
+                  type='password'
+                  placeholder='Password'
+                  onChange={onChangePassword}
+                />
+                <Input
+                  autocomplete='password_confirm'
+                  type='password'
+                  placeholder='Confirm'
+                  onChange={onChangeConfirm}
+                />
                 <button className='button is-rounded is-block is-primary is-fullwidth'>
                   Submit
                 </button>

@@ -1,4 +1,14 @@
-export default function CardDetail () {
+import { useState } from 'react'
+import AddComment from './AddComment'
+import Comment from './Comment'
+
+export default function Post () {
+  const [showComments, setShowComment] = useState(false)
+
+  function toggleComments (e) {
+    setShowComment(!showComments)
+    e.preventDefault()
+  }
   return (
     <div className='card'>
       <div className='header'>
@@ -36,7 +46,7 @@ export default function CardDetail () {
             </div>
             <div className='level-item has-text-centered'>
               <div>
-                <a href=''>
+                <a href='' onClick={toggleComments}>
                   <i className='material-icons'>chat_bubble_outline</i>
                 </a>
               </div>
@@ -55,24 +65,12 @@ export default function CardDetail () {
           <br />
           <time dateTime='2018-1-1'>11:09 PM - 1 Jan 2018</time>
         </div>
+        {showComments && [1, 2, 3, 4, 5].map(() => <Comment />)}
       </div>
+
       <div className='card-footer'>
         <div className='column is-12'>
-          <div className='field is-grouped'>
-            <div className='control is-expanded'>
-              <textarea
-                className='textarea is-rounded'
-                rows='1'
-                type='text'
-                placeholder='Enter your email'
-              />
-            </div>
-            <div className='control'>
-              <a className='button is-rounded is-info'>
-                <i className='material-icons'>send</i>
-              </a>
-            </div>
-          </div>
+          <AddComment />
         </div>
       </div>
     </div>

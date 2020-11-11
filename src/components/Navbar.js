@@ -5,9 +5,7 @@ export default function Navbar () {
     <div className='navbar is-inline-flex is-transparent'>
       <div className='navbar-brand'>
         <a className='navbar-item'>
-          <img
-            src='logo.png' 
-          />
+          <img src='logo.png' />
         </a>
       </div>
       <div className='navbar-menu'>
@@ -25,18 +23,18 @@ export default function Navbar () {
         </div>
       </div>
       <div className='navbar-item is-flex-touch'>
-        <Link to='/register'>
+        <Link to='/'>
           {' '}
           <a className='navbar-item'>
-            <i className='material-icons'>explore</i>
+            <i className='material-icons'>home</i>
           </a>
         </Link>
 
-        <a className='navbar-item'>
-          <i className='material-icons'>favorite_border</i>
-        </a>
-        <Link className='navbar-item' to='/login'>
+        <Link className='navbar-item' to='/profile'>
           <i className='material-icons'>person_outline</i>
+        </Link>
+        <Link className='navbar-item' to='/login'>
+          <i className='material-icons'>settings</i>
         </Link>
       </div>
     </div>

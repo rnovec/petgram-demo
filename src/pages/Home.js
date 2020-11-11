@@ -1,8 +1,9 @@
 import React from 'react'
-import CardDetail from '../components/CardDetail'
+import Post from '../components/Post'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import '../css/index.css'
+import NewPost from '../components/NewPost'
 
 export default function Home () {
   return (
@@ -11,7 +12,8 @@ export default function Home () {
       <section className='section'>
         <div className='columns body-columns'>
           <div className='column is-half is-offset-one-quarter'>
-            <CardDetail />
+            <NewPost />
+            <Post />
           </div>
         </div>
       </section>

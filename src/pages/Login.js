@@ -13,15 +13,13 @@ export default function Login () {
 
   function onChangeUsername (e) {
     setUsername(e.target.value)
-    e.preventDefault()
   }
 
   function onChangePassword (e) {
     setPassword(e.target.value)
-    e.preventDefault()
   }
 
-  function onSumbit (e) {
+  function onSubmit (e) {
     console.log(username, password)
     authenticate({ username, password }).then(() => {
       history.push('/')
@@ -35,7 +33,7 @@ export default function Login () {
       <div className='hero-body has-text-centered'>
         <div className='login'>
           <img src='https://logoipsum.com/logo/logo-12.svg' width='325px' />
-          <form onSubmit={onSumbit}>
+          <form onSubmit={onSubmit}>
             <div className='field'>
               <div className='control'>
                 <input
