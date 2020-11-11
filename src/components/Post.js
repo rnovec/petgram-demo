@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { AuthContext } from '../context/auth'
+import { timeSince } from '../util/time'
 import AddComment from './AddComment'
 import Comment from './Comment'
 
-export default function Post () {
+export default function Post ({ post }) {
+  const { defaultAvatar } = useContext(AuthContext)
   const [showComments, setShowComment] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
 
@@ -10,7 +13,7 @@ export default function Post () {
     setShowComment(!showComments)
     e.preventDefault()
   }
-  
+
   function likeDislike (e) {
     setIsLiked(!isLiked)
     e.preventDefault()
@@ -24,23 +27,22 @@ export default function Post () {
             <figure className='image is-48x48'>
               <img
                 className='is-rounded'
-                src='https://source.unsplash.com/random/96x96'
+                src={post.profile.picture || defaultAvatar}
                 alt='Placeholder'
               />
             </figure>
           </div>
           <div className='media-content'>
-            <p className='title is-4'>John Smith</p>
-            <p className='subtitle is-6'>@johnsmith</p>
+            <p className='title is-4'>
+              {post.profile.user.first_name} {post.profile.user.last_name}
+            </p>
+            <p className='subtitle is-6'>@{post.profile.user.username}</p>
           </div>
         </div>
       </div>
       <div className='card-image'>
         <figure className='image is-4by3'>
-          <img
-            src='https://source.unsplash.com/random/1280x960'
-            alt='Placeholder'
-          />
+          <img src={post.photo} alt='Placeholder' />
         </figure>
       </div>
       <div className='card-content'>
@@ -64,15 +66,13 @@ export default function Post () {
         </div>
 
         <div className='content'>
-          <p>
-            <strong>32 Likes</strong>
-          </p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-          iaculis mauris.
-          <a>@bulmaio</a>.<a href='#'>#css</a>
-          <a href='#'>#responsive</a>
+          <strong>32 Likes</strong>
           <br />
-          <time dateTime='2018-1-1'>11:09 PM - 1 Jan 2018</time>
+          {post.description}
+          {/* <a>@bulmaio</a>.<a href='#'>#css</a>
+          <a href='#'>#responsive</a> */}
+          <br />
+          <time dateTime='2018-1-1'>{timeSince(post.created)}</time> ago
         </div>
         {showComments && [1, 2, 3, 4, 5].map(i => <Comment key={i} />)}
       </div>

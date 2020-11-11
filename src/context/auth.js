@@ -14,6 +14,8 @@ export const AuthContext = createContext()
 export const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [profile, setProfile] = useState({})
+  const defaultAvatar =
+    'https://cooplaaurora.com/resources/members/default-user.jpg'
 
   const authenticate = async data => {
     const res = await login(data)
@@ -41,6 +43,7 @@ export const AuthContextProvider = ({ children }) => {
   const contextValue = {
     profile,
     isAuthenticated,
+    defaultAvatar,
     getProfile,
     setIsAuthenticated,
     authenticate,

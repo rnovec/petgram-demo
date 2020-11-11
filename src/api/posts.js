@@ -1,5 +1,13 @@
 import request from '../util/axios'
 
+export function getPosts () {
+  return request({
+    url: '/posts',
+    method: 'GET'
+  })
+}
+
+
 export function createPost (data) {
   return request({
     url: '/posts',

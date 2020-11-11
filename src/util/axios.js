@@ -11,7 +11,6 @@ const _axios = axios.create({
 
 _axios.interceptors.request.use(config => {
   const token = getToken()
-  console.log(config)
   if (!config.public) {
     config.headers.Authorization = 'Bearer ' + token
   }

@@ -3,13 +3,11 @@ import { createPost } from '../api/posts'
 import { AuthContext } from '../context/auth'
 
 export default function NewPost () {
-  const { profile } = useContext(AuthContext)
+  const { profile, defaultAvatar } = useContext(AuthContext)
   const [selectedFile, setSelectedFile] = useState(null)
   const [filename, setFilename] = useState('')
   const [description, setDescription] = useState('')
   const [isLoading, setIsloading] = useState(false)
-  const defaultAvatar =
-    'https://cooplaaurora.com/resources/members/default-user.jpg'
 
   function handleChange (e) {
     setSelectedFile(e.target.files[0])
@@ -30,6 +28,7 @@ export default function NewPost () {
       form_data.append('profile_id', profile.id)
       try {
         await createPost(form_data)
+        setDescription('')
         setSelectedFile({})
         setFilename('')
       } catch (error) {

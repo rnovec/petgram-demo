@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react'
-import { useHistory } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import '../css/login.css'
+import { useHistory, Link } from 'react-router-dom'
 import { AuthContext } from '../context/auth'
+import '../css/login.css'
 
 export default function Login () {
   const history = useHistory()
