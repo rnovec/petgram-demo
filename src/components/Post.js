@@ -5,7 +5,7 @@ import AddComment from './AddComment'
 import Comment from './Comment'
 
 export default function Post ({ post }) {
-  const { defaultAvatar } = useContext(AuthContext)
+  const { profile, defaultAvatar } = useContext(AuthContext)
   const [showComments, setShowComment] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
 
@@ -37,6 +37,30 @@ export default function Post ({ post }) {
               {post.profile.user.first_name} {post.profile.user.last_name}
             </p>
             <p className='subtitle is-6'>@{post.profile.user.username}</p>
+          </div>
+
+          <div className='media-right'>
+            <div class='dropdown is-active2 is-right'>
+              <div class='dropdown-trigger'>
+                <a href='' onClick={toggleComments}>
+                  <i className='material-icons'>more_vert</i>
+                </a>
+              </div>
+              <div class='dropdown-menu' id='dropdown-menu3' role='menu'>
+                <div class='dropdown-content'>
+                  <a href='#' class='dropdown-item'>
+                    Edit
+                  </a>
+                  <a href='#' class='dropdown-item'>
+                    Share
+                  </a>
+                  <hr class='dropdown-divider' />
+                  <a href='#' class='dropdown-item has-text-danger'>
+                    Delete post
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
