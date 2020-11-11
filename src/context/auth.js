@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { login } from '../api/users'
+import { setToken } from '../util/auth'
 
 export const AuthContext = createContext()
 
@@ -8,6 +9,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const authenticate = async data => {
     const res = await login(data)
+    setToken(res.access)
     setIsAuthenticated(true)
     Promise.resolve(res)
   }

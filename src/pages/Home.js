@@ -13,7 +13,9 @@ export default function Home () {
         <div className='columns body-columns'>
           <div className='column is-half is-offset-one-quarter'>
             <NewPost />
-            <Post />
+            {[1, 2, 3, 4, 5].map(i => (
+              <Post key={i}/>
+            ))}
           </div>
         </div>
       </section>

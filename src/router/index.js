@@ -8,6 +8,7 @@ import GuardedRoute from './GuardedRoute'
 
 export default function App () {
   const { isAuthenticated } = useContext(AuthContext)
+  
   return (
     <Router>
       <Switch>

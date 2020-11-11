@@ -11,6 +11,7 @@ export default function AddComment () {
           <p className='control'>
             <textarea
               className='textarea'
+              rows='3'
               placeholder='Add a comment...'
             ></textarea>
           </p>

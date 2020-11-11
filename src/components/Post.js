@@ -4,11 +4,18 @@ import Comment from './Comment'
 
 export default function Post () {
   const [showComments, setShowComment] = useState(false)
+  const [isLiked, setIsLiked] = useState(false)
 
   function toggleComments (e) {
     setShowComment(!showComments)
     e.preventDefault()
   }
+  
+  function likeDislike (e) {
+    setIsLiked(!isLiked)
+    e.preventDefault()
+  }
+
   return (
     <div className='card'>
       <div className='header'>
@@ -40,8 +47,10 @@ export default function Post () {
         <div className='level is-mobile'>
           <div className='level-left'>
             <div className='level-item has-text-centered'>
-              <a href=''>
-                <i className='material-icons'>favorite_border</i>
+              <a href='' onClick={likeDislike}>
+                <i className='material-icons has-text-danger'>
+                  {isLiked ? 'favorite' : 'favorite_border'}
+                </i>
               </a>
             </div>
             <div className='level-item has-text-centered'>
@@ -65,7 +74,7 @@ export default function Post () {
           <br />
           <time dateTime='2018-1-1'>11:09 PM - 1 Jan 2018</time>
         </div>
-        {showComments && [1, 2, 3, 4, 5].map(() => <Comment />)}
+        {showComments && [1, 2, 3, 4, 5].map(i => <Comment key={i} />)}
       </div>
 
       <div className='card-footer'>

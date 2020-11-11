@@ -4,9 +4,9 @@ export default function Navbar () {
   return (
     <div className='navbar is-inline-flex is-transparent'>
       <div className='navbar-brand'>
-        <a className='navbar-item'>
+        <Link to='/' className='navbar-item'>
           <img src='logo.png' />
-        </a>
+        </Link>
       </div>
       <div className='navbar-menu'>
         <div className='navbar-item'>
@@ -23,18 +23,18 @@ export default function Navbar () {
         </div>
       </div>
       <div className='navbar-item is-flex-touch'>
-        <Link to='/'>
+        <Link to='/profile'>
           {' '}
           <a className='navbar-item'>
-            <i className='material-icons'>home</i>
+            <i className='material-icons'>person_outline</i>
           </a>
         </Link>
 
-        <Link className='navbar-item' to='/profile'>
-          <i className='material-icons'>person_outline</i>
+        <Link className='navbar-item' to='/settings'>
+          <i className='material-icons'>settings</i>
         </Link>
         <Link className='navbar-item' to='/login'>
-          <i className='material-icons'>settings</i>
+          <i className='material-icons has-text-danger'>logout</i>
         </Link>
       </div>
     </div>
