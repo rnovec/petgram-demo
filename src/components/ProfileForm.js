@@ -14,7 +14,7 @@ export default function ProfileForm() {
         <div className='field-body'>
           <div className='field'>
             <p className='control is-expanded has-icons-left'>
-              <input className='input' type='text' placeholder='Username' />
+              <input className='input' type='text' placeholder='Username'value={user.username} />
               <span className='icon is-small is-left'>
                 <i className='fas fa-user'></i>
               </span>
