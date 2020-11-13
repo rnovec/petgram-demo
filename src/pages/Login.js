@@ -7,6 +7,7 @@ export default function Login () {
   const history = useHistory()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const { authenticate } = useContext(AuthContext)
 
@@ -18,13 +19,16 @@ export default function Login () {
     setPassword(e.target.value)
   }
 
-  function onSubmit (e) {
-    console.log(username, password)
-    authenticate({ username, password }).then(() => {
-      history.push('/')
-    })
-
+  async function onSubmit (e) {
     e.preventDefault()
+    setIsLoading(true)
+    try {
+      await authenticate({ username, password })
+      history.push('/')
+    } catch (error) {
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -63,7 +67,9 @@ export default function Login () {
               </label>
             </div>
             <button
-              className='button is-block is-fullwidth is-primary is-medium is-rounded'
+              className={`button is-block is-fullwidth is-primary is-medium is-rounded ${
+                isLoading ? 'is-loading' : ''
+              }`}
               type='submit'
             >
               Login
