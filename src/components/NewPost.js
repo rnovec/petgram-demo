@@ -1,8 +1,10 @@
 import { useState, useContext } from 'react'
+import { useHistory, Link } from 'react-router-dom'
 import { createPost } from '../api/posts'
 import { AuthContext } from '../context/auth'
 
 export default function NewPost () {
+  const history = useHistory()
   const { profile, defaultAvatar } = useContext(AuthContext)
   const [selectedFile, setSelectedFile] = useState(null)
   const [filename, setFilename] = useState('')
@@ -20,6 +22,7 @@ export default function NewPost () {
 
   async function onSubmit (e) {
     e.preventDefault()
+    if (!profile.avatar) history.push('/profile')
     if (filename && description) {
       setIsloading(true)
       const form_data = new FormData()
