@@ -10,10 +10,6 @@ body {
   color: var(--textDark);
 }
 
-.field:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
 .register {
   margin-top: 1em;
   background: white;

@@ -7,41 +7,50 @@ import '../css/register.css'
 
 export default function Register () {
   const history = useHistory()
+  const [isLoading, setIsLoading] = useState(false)
   const [user, setUser] = useState({
     username: '',
     first_name: '',
+    last_name: '',
     email: '',
     password: '',
     password_confirm: ''
   })
 
-  function onChangeUsername (e) {
+  const onChangeUsername = e => {
     setUser({ ...user, username: e.target.value })
   }
 
-  function onChangeName (e) {
+  const onChangeName = e => {
     setUser({ ...user, first_name: e.target.value })
   }
 
-  function onChangeEmail (e) {
+  const onChangeLastname = e => {
+    setUser({ ...user, last_name: e.target.value })
+  }
+
+  const onChangeEmail = e => {
     setUser({ ...user, email: e.target.value })
   }
 
-  function onChangePassword (e) {
+  const onChangePassword = e => {
     setUser({ ...user, password: e.target.value })
   }
 
-  function onChangeConfirm (e) {
+  const onChangeConfirm = e => {
     setUser({ ...user, password_confirm: e.target.value })
   }
 
-  async function onSubmit (e) {
+  const onSubmit = async e => {
     e.preventDefault()
+    setIsLoading(true)
     try {
-      const res = await register(user)
+      await register(user)
       history.push('/')
     } catch (error) {
       console.log(error)
+    } finally {
+      setIsLoading(false)
     }
   }
   return (
@@ -65,6 +74,7 @@ export default function Register () {
               <p className='description'>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit
               </p>
+
               <form onSubmit={onSubmit}>
                 <Input
                   autocomplete='username'
@@ -73,8 +83,13 @@ export default function Register () {
                 />
                 <Input
                   autocomplete='first_name'
-                  placeholder='Fullname'
+                  placeholder='First name'
                   onChange={onChangeName}
+                />
+                <Input
+                  autocomplete='last_name'
+                  placeholder='Lastname'
+                  onChange={onChangeLastname}
                 />
                 <Input
                   autocomplete='email'
