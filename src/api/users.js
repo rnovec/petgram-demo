@@ -20,7 +20,15 @@ export function register (data) {
 
 export function getUserInfo (id) {
   return request({
+    url: `/users/${id}`,
+    method: 'GET'
+  })
+}
+
+export function getUserProfile (id) {
+  return request({
     url: `/users/${id}/profile`,
     method: 'GET'
   })
 }
+
