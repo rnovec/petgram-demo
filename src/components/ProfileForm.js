@@ -1,4 +1,9 @@
-export default function ProfileForm () {
+import { useContext } from "react"
+import { AuthContext } from "../context/auth"
+
+export default function ProfileForm() {
+  const { user, profile, defaultAvatar } = useContext(AuthContext)
+
   return (
     <div>
       <h3>Basic Info</h3>

@@ -19,9 +19,11 @@ export default function App () {
         <Route path='/login'>
           <Login />
         </Route>
-        <Route path='/profile'>
-          <Profile />
-        </Route>
+        <GuardedRoute
+          path='/profile'
+          component={Profile}
+          auth={isAuthenticated}
+        />
         <GuardedRoute path='/' component={Home} auth={isAuthenticated} />
       </Switch>
     </Router>
