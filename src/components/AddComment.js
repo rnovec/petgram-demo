@@ -1,8 +1,28 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import { createComment } from '../api/posts'
 import { AuthContext } from '../context/auth'
 
-export default function AddComment () {
+export default function AddComment ({ post_id, onComment }) {
   const { user, defaultAvatar } = useContext(AuthContext)
+  const [message, setMessage] = useState('')
+
+  function onChangeMessage (e) {
+    e.preventDefault()
+    setMessage(e.target.value)
+  }
+
+  async function onSubmit (e) {
+    e.preventDefault()
+    if (message.trim()) {
+      await createComment({
+        user_id: user.id,
+        post_id,
+        message
+      })
+      setMessage('')
+      onComment()
+    }
+  }
 
   return (
     <article className='media'>
@@ -12,22 +32,25 @@ export default function AddComment () {
         </p>
       </figure>
       <div className='media-content'>
-        <div className='field'>
-          <p className='control'>
-            <textarea
-              className='textarea'
-              rows='3'
-              placeholder='Add a comment...'
-            ></textarea>
-          </p>
-        </div>
-        <div className='field'>
-          <p className='control'>
-            <button className='button is-primary is-fullwidth'>
-              Post comment
-            </button>
-          </p>
-        </div>
+        <form onSubmit={onSubmit}>
+          <div className='field'>
+            <p className='control'>
+              <textarea
+                className='textarea'
+                rows='3'
+                onChange={onChangeMessage}
+                placeholder='Add a comment...'
+              ></textarea>
+            </p>
+          </div>
+          <div className='field'>
+            <p className='control'>
+              <button className='button is-primary is-fullwidth'>
+                Post comment
+              </button>
+            </p>
+          </div>
+        </form>
       </div>
     </article>
   )

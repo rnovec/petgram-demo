@@ -11,8 +11,8 @@ export default function PostPreview ({ post }) {
       </div>
       <div className='media-content'>
         <div className='content'>
-          <strong>{post.user.fullname}</strong>{' '}
-          <span>@{post.user.username}</span>{' '}
+          <strong>{post.user.fullname}</strong> ·{' '}
+          <span>@{post.user.username}</span> ·{' '}
           <small className='has-text-grey'>
             <time>{timeSince(post.created)}</time> ago
           </small>

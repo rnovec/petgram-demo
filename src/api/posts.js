@@ -24,6 +24,14 @@ export function createComment (data) {
   })
 }
 
+export function getPostComments (id) {
+  return request({
+    url: `/posts/${id}/comments`,
+    method: 'GET'
+  })
+}
+
+
 export function removePost (id) {
   return request({
     url: `/posts/${id}`,

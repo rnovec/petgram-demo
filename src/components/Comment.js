@@ -1,23 +1,27 @@
-export default function Comment () {
+import { useContext } from 'react'
+import { AuthContext } from '../context/auth'
+import { timeSince } from '../util/time'
+
+
+export default function Comment({ comment }) {
+  const { defaultAvatar } = useContext(AuthContext)
+
   return (
     <article className='media'>
       <figure className='media-left'>
-        <p className='image is-48x48'>
-          <img src='https://bulma.io/images/placeholders/96x96.png' />
+        <p className='image is-32x32'>
+          <img className='is-rounded' src={comment.user.picture || defaultAvatar} />
         </p>
       </figure>
       <div className='media-content'>
         <div className='content'>
           <p>
-            <strong>Sean Brown</strong>
+            <strong>{comment.user.fullname}</strong>
             <br />
-            Donec sollicitudin urna eget eros malesuada sagittis. Pellentesque
-            habitant morbi tristique senectus et netus et malesuada fames ac
-            turpis egestas. Aliquam blandit nisl a nulla sagittis, a lobortis
-            leo feugiat.
+            {comment.message}
             <br />
-            <small>
-              <a>Like</a> · <a>Reply</a> · 2 hrs
+            <small className='has-text-grey'>
+              <a href="#add-comment">Reply</a> · {timeSince(comment.created)} ago
             </small>
           </p>
         </div>
