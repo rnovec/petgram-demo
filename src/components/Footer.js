@@ -4,11 +4,11 @@ export default function Footer () {
       <div className='container is-fluid'>
         <div className='content has-text-centered'>
           <p>
-            <strong>Bulma</strong> by
-            <a href='http://jgthms.com'>Jeremy Thomas</a>. The source code is
-            licensed
+            <strong>Petgram</strong> by &nbsp;
+            <a href='https://rnovec.github.io'>Raúl Novelo</a>. The source code
+            is licensed &nbsp;
             <a href='http://opensource.org/licenses/mit-license.php'>MIT</a>.
-            The website content is licensed
+            The website content is licensed &nbsp;
             <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>
               CC BY NC SA 4.0
             </a>
