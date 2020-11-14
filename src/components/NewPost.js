@@ -44,15 +44,17 @@ export default function NewPost () {
   return (
     <div className='card'>
       <header className='card-header'>
-        <p className='card-header-title'>Create a new post</p>
+        <p className='card-header-title'>
+          <span className='icon is-medium'>
+            <i className='fas fa-image' aria-hidden='true'></i>
+          </span>
+          Create a new post
+        </p>
       </header>
       <div className='card-content'>
         <article className='media'>
           <figure className='media-left image is-48x48'>
-            <img
-              className='is-rounded'
-              src={user.picture || defaultAvatar}
-            />
+            <img className='is-rounded' src={user.picture || defaultAvatar} />
           </figure>
           <div className='media-content'>
             <div className='field'>
@@ -71,6 +73,7 @@ export default function NewPost () {
           <div className='control'>
             <input
               id='photo'
+              accept="image/png, image/jpeg"
               className='file-input'
               onChange={handleChange}
               type='file'
