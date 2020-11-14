@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Main from '../layouts/Main'
 import Profile from '../layouts/Profile'
 import PostPreview from '../components/PostPreview'
@@ -6,19 +6,21 @@ import ProfileForm from '../components/ProfileForm'
 import AccountForm from '../components/AccountForm'
 import '../css/profile.css'
 import '../css/profile-card.css'
-import { getPosts } from '../api/posts'
+import { getUserPosts } from '../api/users'
+import { AuthContext } from '../context/auth'
 
-export default function ProfileReview () {
+export default function ProfileReview() {
+  const { user } = useContext(AuthContext)
   const [isEdit, setIsEdit] = useState(false)
   const [posts, setPosts] = useState([])
   function toggleTab () {
     setIsEdit(!isEdit)
   }
   useEffect(() => {
-    getPosts().then(res => {
+    getUserPosts(user.id).then(res => {
       setPosts(res.results)
     })
-  }, [])
+  }, user)
   return (
     <Main>
       <br />

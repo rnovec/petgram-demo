@@ -23,3 +23,10 @@ export function createComment (data) {
     data
   })
 }
+
+export function removePost (id) {
+  return request({
+    url: `/posts/${id}`,
+    method: 'DELETE'
+  })
+}

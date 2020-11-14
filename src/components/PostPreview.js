@@ -1,4 +1,5 @@
 import { timeSince } from '../util/time'
+import PostOptions from './PostOptions'
 
 export default function PostPreview ({ post }) {
   return (
@@ -36,7 +37,7 @@ export default function PostPreview ({ post }) {
         </nav>
       </div>
       <div className='media-right'>
-        <button className='delete'></button>
+        <PostOptions/>
       </div>
       <hr/>
     </article>

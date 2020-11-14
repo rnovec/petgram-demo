@@ -33,3 +33,11 @@ export function updateProfile (id, data) {
     data
   })
 }
+
+export function getUserPosts (id) {
+  return request({
+    url: `/users/${id}/posts`,
+    method: 'GET'
+  })
+}
+

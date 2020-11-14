@@ -3,6 +3,7 @@ import { AuthContext } from '../context/auth'
 import { timeSince } from '../util/time'
 import AddComment from './AddComment'
 import Comment from './Comment'
+import PostOptions from './PostOptions'
 
 export default function Post ({ post }) {
   const { user, defaultAvatar } = useContext(AuthContext)
@@ -33,35 +34,14 @@ export default function Post ({ post }) {
             </figure>
           </div>
           <div className='media-content'>
-            <p className='title is-4'>
-               {post.user.fullname}
-            </p>
+            <p className='title is-4'>{post.user.fullname}</p>
             <p className='subtitle is-6'>@{post.user.username}</p>
           </div>
-
-          <div className='media-right'>
-            <div class='dropdown is-active2 is-right'>
-              <div class='dropdown-trigger'>
-                <a href='' onClick={toggleComments}>
-                  <i className='material-icons'>more_vert</i>
-                </a>
-              </div>
-              <div class='dropdown-menu' id='dropdown-menu3' role='menu'>
-                <div class='dropdown-content'>
-                  <a href='#' class='dropdown-item'>
-                    Edit
-                  </a>
-                  <a href='#' class='dropdown-item'>
-                    Share
-                  </a>
-                  <hr class='dropdown-divider' />
-                  <a href='#' class='dropdown-item has-text-danger'>
-                    Delete post
-                  </a>
-                </div>
-              </div>
+          {user.id === post.user.id && (
+            <div className='media-right'>
+              <PostOptions />
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className='card-image'>
