@@ -5,7 +5,7 @@ import '../css/profile.css'
 import '../css/profile-card.css'
 
 export default function Profile ({ children }) {
-  const { user,defaultAvatar } = useContext(AuthContext)
+  const { user, defaultAvatar } = useContext(AuthContext)
 
   return (
     <section className='section container'>
@@ -18,9 +18,7 @@ export default function Profile ({ children }) {
                   <img width='200' src={user.picture || defaultAvatar} />
                 </figure>
                 <div className='media-content'>
-                  <p className='title is-4'>
-                    {user.first_name} {user.last_name}
-                  </p>
+                  <p className='title is-4'>{user.fullname}</p>
                   <p className='subtitle is-6'>@{user.username}</p>
                   <ul className='has-text-left'>
                     <li>

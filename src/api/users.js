@@ -25,9 +25,10 @@ export function getUserInfo (id) {
   })
 }
 
-export function createOrUpdateProfile (id, data) {
+export function updateProfile (id, data) {
   return request({
-    url: `/users/${id}/profile`,
+    url: `/users/${id}`,
+    headers: { 'Content-Type': 'multipart/form-data' },
     method: 'PUT',
     data
   })

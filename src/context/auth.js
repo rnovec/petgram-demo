@@ -45,6 +45,7 @@ export const AuthContextProvider = ({ children }) => {
     isAuthenticated,
     defaultAvatar,
     getUser,
+    setUser,
     setIsAuthenticated,
     authenticate,
     logout
