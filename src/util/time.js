@@ -12,6 +12,7 @@ function pluralize (time, label) {
 }
 
 /**
+ * Unused time ago filter
  * @param {number} time
  */
 export function timeAgo (time) {
@@ -25,6 +26,10 @@ export function timeAgo (time) {
   }
 }
 
+/**
+ * Time since filter
+ * @param {string} date 
+ */
 export function timeSince (date) {
   var seconds = Math.floor((new Date() - new Date(date)) / 1000)
 
@@ -51,4 +56,3 @@ export function timeSince (date) {
   }
   return Math.floor(seconds) + ' seconds'
 }
-
