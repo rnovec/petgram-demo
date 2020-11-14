@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/petgram-demo/static/css/main.c3003e8d.chunk.css",
-    "main.js": "/petgram-demo/static/js/main.986d46f9.chunk.js",
-    "main.js.map": "/petgram-demo/static/js/main.986d46f9.chunk.js.map",
+    "main.js": "/petgram-demo/static/js/main.afadc2eb.chunk.js",
+    "main.js.map": "/petgram-demo/static/js/main.afadc2eb.chunk.js.map",
     "runtime-main.js": "/petgram-demo/static/js/runtime-main.a90cf890.js",
     "runtime-main.js.map": "/petgram-demo/static/js/runtime-main.a90cf890.js.map",
     "static/js/2.dc462e7c.chunk.js": "/petgram-demo/static/js/2.dc462e7c.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.a90cf890.js",
     "static/js/2.dc462e7c.chunk.js",
     "static/css/main.c3003e8d.chunk.css",
-    "static/js/main.986d46f9.chunk.js"
+    "static/js/main.afadc2eb.chunk.js"
   ]
 }
