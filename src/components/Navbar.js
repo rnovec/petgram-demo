@@ -19,7 +19,7 @@ export default function Navbar () {
       </div>
       <div className='navbar-menu'>
         <div className='navbar-item'>
-          <div className='control has-icons-left'>
+          {/* <div className='control has-icons-left'>
             <input
               className='input is-rounded is-small has-text-centered'
               type='text'
@@ -28,7 +28,7 @@ export default function Navbar () {
             <span className='icon is-left is-small'>
               <i className='material-icons'>search</i>
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className='navbar-item is-flex-touch'>
