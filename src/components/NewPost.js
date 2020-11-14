@@ -5,7 +5,7 @@ import { AuthContext } from '../context/auth'
 
 export default function NewPost () {
   const history = useHistory()
-  const { profile, defaultAvatar } = useContext(AuthContext)
+  const { user, defaultAvatar } = useContext(AuthContext)
   const [selectedFile, setSelectedFile] = useState(null)
   const [filename, setFilename] = useState('')
   const [description, setDescription] = useState('')
@@ -22,13 +22,13 @@ export default function NewPost () {
 
   async function onSubmit (e) {
     e.preventDefault()
-    if (!profile.avatar) history.push('/profile')
+    if (!user.avatar) history.push('/profile')
     if (filename && description) {
       setIsloading(true)
       const form_data = new FormData()
       form_data.append('photo', selectedFile, selectedFile.name)
       form_data.append('description', description)
-      form_data.append('profile_id', profile.id)
+      form_data.append('user_id', user.id)
       try {
         await createPost(form_data)
         setDescription('')
@@ -51,7 +51,7 @@ export default function NewPost () {
           <figure className='media-left image is-48x48'>
             <img
               className='is-rounded'
-              src={profile.picture || defaultAvatar}
+              src={user.picture || defaultAvatar}
             />
           </figure>
           <div className='media-content'>

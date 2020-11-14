@@ -1,74 +1,35 @@
-import { useContext } from "react"
-import { AuthContext } from "../context/auth"
+import { useContext, useEffect, useState } from 'react'
+import { createOrUpdateProfile } from '../api/users'
+import { AuthContext } from '../context/auth'
 
-export default function ProfileForm() {
-  const { user, profile, defaultAvatar } = useContext(AuthContext)
+export default function ProfileForm () {
+  const { user } = useContext(AuthContext)
+  const [form, setForm] = useState({
+    id: null,
+    user: null,
+    picture: '',
+    address: '',
+    phone: ''
+  })
+
+  useEffect(() => {
+    setForm(user)
+    console.log(user)
+  }, [])
+
+  function onChange (e) {
+    const val = e.target.value
+    const attr = e.target.name
+    setForm({ ...form, [attr]: val })
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    createOrUpdateProfile(user.id, form)
+  }
 
   return (
-    <div>
-      <h3>Basic Info</h3>
-      <div className='field is-horizontal'>
-        <div className='field-label is-normal'>
-          <label className='label'>Account</label>
-        </div>
-        <div className='field-body'>
-          <div className='field'>
-            <p className='control is-expanded has-icons-left'>
-              <input className='input' type='text' placeholder='Username'value={user.username} />
-              <span className='icon is-small is-left'>
-                <i className='fas fa-user'></i>
-              </span>
-            </p>
-          </div>
-          <div className='field'>
-            <p className='control is-expanded has-icons-left has-icons-right'>
-              <input
-                className='input is-success'
-                type='email'
-                placeholder='Email'
-              />
-              <span className='icon is-small is-left'>
-                <i className='fas fa-envelope'></i>
-              </span>
-              <span className='icon is-small is-right'>
-                <i className='fas fa-check'></i>
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className='field is-horizontal'>
-        <div className='field-label is-normal'>
-          <label className='label'>Fullname</label>
-        </div>
-        <div className='field-body'>
-          <div className='field'>
-            <p className='control is-expanded'>
-              <input className='input' type='text' placeholder='First name' />
-            </p>
-          </div>
-          <div className='field'>
-            <p className='control is-expanded'>
-              <input
-                className='input is-success'
-                type='text'
-                placeholder='Lastname'
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className='field is-horizontal'>
-        <div className='field-label'></div>
-        <div className='field-body'>
-          <div className='field'>
-            <div className='control'>
-              <button className='button is-primary'>Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <form onSubmit={onSubmit}>
       <h3>Profile</h3>
 
       <div className='field is-horizontal'>
@@ -101,35 +62,40 @@ export default function ProfileForm() {
           <div className='field'>
             <div className='control'>
               <input
-                className='input is-danger'
+                className='input'
                 type='text'
                 placeholder='Address'
+                name='address'
+                onChange={onChange}
+                value={form.address}
               />
             </div>
-            <p className='help is-danger'>This field is required</p>
           </div>
         </div>
       </div>
 
-      <div class='field is-horizontal'>
+      <div className='field is-horizontal'>
         <div className='field-label is-normal'>
           <label className='label'>Phone</label>
         </div>
-        <div class='field-body'>
-          <div class='field is-expanded'>
-            <div class='field has-addons'>
-              <p class='control'>
-                <a class='button is-static'>+52</a>
+        <div className='field-body'>
+          <div className='field is-expanded'>
+            <div className='field has-addons'>
+              <p className='control'>
+                <a className='button is-static'>+52</a>
               </p>
-              <p class='control is-expanded'>
+              <p className='control is-expanded'>
                 <input
-                  class='input'
+                  className='input'
                   type='tel'
                   placeholder='Your phone number'
+                  name='phone'
+                  onChange={onChange}
+                  value={form.phone}
                 />
               </p>
             </div>
-            <p class='help'>Do not enter the first zero</p>
+            <p className='help'>Do not enter the first zero</p>
           </div>
         </div>
       </div>
@@ -144,6 +110,6 @@ export default function ProfileForm() {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   )
 }

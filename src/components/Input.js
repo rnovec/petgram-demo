@@ -1,5 +1,6 @@
 export default function Input ({
   type = 'text',
+  name,
   autocomplete,
   placeholder,
   required = true,
@@ -11,6 +12,7 @@ export default function Input ({
         <input
           className='input is-rounded'
           onChange={props.onChange}
+          name={name}
           autoComplete={autocomplete}
           type={type}
           required={required}

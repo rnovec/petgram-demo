@@ -3,6 +3,7 @@ import Main from '../layouts/Main'
 import Profile from '../layouts/Profile'
 import PostPreview from '../components/PostPreview'
 import ProfileForm from '../components/ProfileForm'
+import AccountForm from '../components/AccountForm'
 import '../css/profile.css'
 import '../css/profile-card.css'
 
@@ -38,7 +39,14 @@ export default function ProfileReview () {
           </div>
 
           <div className='box content'>
-            {isEdit ? <ProfileForm /> : <PostPreview />}
+            {isEdit ? (
+              <>
+                <AccountForm />
+                <ProfileForm />
+              </>
+            ) : (
+              <PostPreview />
+            )}
           </div>
         </div>
       </Profile>

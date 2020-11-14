@@ -5,7 +5,7 @@ import '../css/profile.css'
 import '../css/profile-card.css'
 
 export default function Profile ({ children }) {
-  const { user, profile, defaultAvatar } = useContext(AuthContext)
+  const { user,defaultAvatar } = useContext(AuthContext)
 
   return (
     <section className='section container'>
@@ -15,7 +15,7 @@ export default function Profile ({ children }) {
             <ul className='menu-list'>
               <div className='card box has-text-centered'>
                 <figure className='avatar'>
-                  <img width='200' src={profile.picture || defaultAvatar} />
+                  <img width='200' src={user.picture || defaultAvatar} />
                 </figure>
                 <div className='media-content'>
                   <p className='title is-4'>

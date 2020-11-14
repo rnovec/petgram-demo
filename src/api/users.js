@@ -25,10 +25,10 @@ export function getUserInfo (id) {
   })
 }
 
-export function getUserProfile (id) {
+export function createOrUpdateProfile (id, data) {
   return request({
     url: `/users/${id}/profile`,
-    method: 'GET'
+    method: 'PUT',
+    data
   })
 }
-

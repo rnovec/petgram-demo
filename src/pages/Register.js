@@ -10,35 +10,16 @@ export default function Register () {
   const [isLoading, setIsLoading] = useState(false)
   const [user, setUser] = useState({
     username: '',
-    first_name: '',
-    last_name: '',
+    fullname: '',
     email: '',
     password: '',
     password_confirm: ''
   })
 
-  const onChangeUsername = e => {
-    setUser({ ...user, username: e.target.value })
-  }
-
-  const onChangeName = e => {
-    setUser({ ...user, first_name: e.target.value })
-  }
-
-  const onChangeLastname = e => {
-    setUser({ ...user, last_name: e.target.value })
-  }
-
-  const onChangeEmail = e => {
-    setUser({ ...user, email: e.target.value })
-  }
-
-  const onChangePassword = e => {
-    setUser({ ...user, password: e.target.value })
-  }
-
-  const onChangeConfirm = e => {
-    setUser({ ...user, password_confirm: e.target.value })
+  function onChange (e) {
+    const val = e.target.value
+    const attr = e.target.name
+    setUser({ ...user, [attr]: val })
   }
 
   const onSubmit = async e => {
@@ -79,37 +60,37 @@ export default function Register () {
                 <Input
                   autocomplete='username'
                   placeholder='Username'
-                  onChange={onChangeUsername}
+                  name='username'
+                  onChange={onChange}
                 />
                 <Input
-                  autocomplete='first_name'
-                  placeholder='First name'
-                  onChange={onChangeName}
-                />
-                <Input
-                  autocomplete='last_name'
-                  placeholder='Lastname'
-                  onChange={onChangeLastname}
+                  autocomplete='fullname'
+                  placeholder='Full name'
+                  name='fullname'
+                  onChange={onChange}
                 />
                 <Input
                   autocomplete='email'
                   type='email'
                   placeholder='Email'
-                  onChange={onChangeEmail}
+                  name='email'
+                  onChange={onChange}
                 />
                 <Input
                   autocomplete='password'
                   type='password'
                   placeholder='Password'
-                  onChange={onChangePassword}
+                  name='password'
+                  onChange={onChange}
                 />
                 <Input
                   autocomplete='password_confirm'
                   type='password'
                   placeholder='Confirm'
-                  onChange={onChangeConfirm}
+                  name='password_confirm'
+                  onChange={onChange}
                 />
-                <button className='button is-rounded is-block is-primary is-fullwidth'>
+                <button className={`button is-rounded is-block is-primary is-fullwidth ${isLoading ? 'is-loading' : ''}`}>
                   Submit
                 </button>
                 <br />
