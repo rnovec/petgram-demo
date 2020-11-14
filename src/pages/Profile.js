@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Main from '../layouts/Main'
 import Profile from '../layouts/Profile'
 import PostPreview from '../components/PostPreview'
@@ -6,12 +6,19 @@ import ProfileForm from '../components/ProfileForm'
 import AccountForm from '../components/AccountForm'
 import '../css/profile.css'
 import '../css/profile-card.css'
+import { getPosts } from '../api/posts'
 
 export default function ProfileReview () {
   const [isEdit, setIsEdit] = useState(false)
+  const [posts, setPosts] = useState([])
   function toggleTab () {
     setIsEdit(!isEdit)
   }
+  useEffect(() => {
+    getPosts().then(res => {
+      setPosts(res.results)
+    })
+  }, [])
   return (
     <Main>
       <br />
@@ -45,7 +52,31 @@ export default function ProfileReview () {
                 <ProfileForm />
               </>
             ) : (
-              <PostPreview />
+              <>
+                {' '}
+                {!posts.length ? (
+                  <div className='notification is-link'>
+                    <article className='media'>
+                      <div className='media-left'>
+                        <span className='icon'>
+                          <i className='fas fa-sad-tear'></i>
+                        </span>
+                      </div>
+                      <div className='media-content'>
+                        Nothing's here…{' '}
+                        <strong>You do not have any post yet</strong>.
+                      </div>
+                      <div className='media-right'>
+                        {/* <button className='button is-small is-primary'>
+                          Dismiss
+                        </button> */}
+                      </div>
+                    </article>
+                  </div>
+                ) : (
+                  posts.map(post => <PostPreview key={post.uuid} post={post} />)
+                )}
+              </>
             )}
           </div>
         </div>

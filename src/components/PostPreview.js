@@ -1,31 +1,44 @@
-export default function PostPreview () {
+import { timeSince } from '../util/time'
+
+export default function PostPreview ({ post }) {
   return (
-    <article className='post'>
-      <h4>Bulma: How do you center a button in a box?</h4>
-      <div className='media'>
-        <div className='media-left'>
-          <p className='image is-32x32'>
-            <img src='http://bulma.io/images/placeholders/128x128.png' />
-          </p>
-        </div>
-        <div className='media-content'>
-          <div className='content'>
-            <p>
-              <a href='#'>@jsmith</a> replied 34 minutes ago &nbsp;
-              <span className='tag'>Question</span>
-            </p>
-          </div>
-        </div>
-        <div className='media-right'>
-          <span className='has-text-grey-light'>
-            <i className='fa fa-comments'></i> 1
-          </span>
-          &nbsp;
-          <span className='has-text-danger'>
-            <i className='fa fa-heart'></i> 1
-          </span>
-        </div>
+    <article className='media box'>
+      <div className='media-left'>
+        <p className='image is-64x64'>
+          <img src={post.photo} />
+        </p>
       </div>
+      <div className='media-content'>
+        <div className='content'>
+          <strong>{post.user.fullname}</strong>{' '}
+          <span>@{post.user.username}</span>{' '}
+          <small className='has-text-grey'>
+            <time>{timeSince(post.created)}</time> ago
+          </small>
+          <br />
+          {post.description}
+        </div>
+        <nav className='level is-mobile'>
+          <div className='level-left'>
+            &nbsp; &nbsp;
+            <a className='level-item'>
+              <span className='icon is-small'>
+                <i className='fas fa-comments'></i> 10
+              </span>
+            </a>
+            &nbsp; &nbsp;
+            <a className='level-item has-text-danger'>
+              <span className='icon is-small'>
+                <i className='fas fa-heart'></i> 1
+              </span>
+            </a>
+          </div>
+        </nav>
+      </div>
+      <div className='media-right'>
+        <button className='delete'></button>
+      </div>
+      <hr/>
     </article>
   )
 }

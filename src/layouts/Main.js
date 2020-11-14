@@ -6,11 +6,8 @@ import '../css/index.css'
 
 export default function Principal ({ children }) {
   const { getUser } = useContext(AuthContext)
-
   useEffect(() => {
-    ;(async () => {
-      await getUser()
-    })()
+    getUser()
   }, [])
   return (
     <>

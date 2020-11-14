@@ -22,7 +22,7 @@ export default function NewPost () {
 
   async function onSubmit (e) {
     e.preventDefault()
-    if (!user.avatar) history.push('/profile')
+    if (!user.picture) history.push('/profile')
     if (filename && description) {
       setIsloading(true)
       const form_data = new FormData()

@@ -7,7 +7,6 @@ export function getPosts () {
   })
 }
 
-
 export function createPost (data) {
   return request({
     url: '/posts',

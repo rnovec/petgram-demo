@@ -1,9 +1,14 @@
+import { useContext } from 'react'
+import { AuthContext } from '../context/auth'
+
 export default function AddComment () {
+  const { user, defaultAvatar } = useContext(AuthContext)
+
   return (
     <article className='media'>
       <figure className='media-left'>
         <p className='image is-48x48'>
-          <img src='https://bulma.io/images/placeholders/128x128.png' />
+          <img className='is-rounded' src={user.picture || defaultAvatar} />
         </p>
       </figure>
       <div className='media-content'>

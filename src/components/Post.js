@@ -5,7 +5,7 @@ import AddComment from './AddComment'
 import Comment from './Comment'
 
 export default function Post ({ post }) {
-  const { profile, defaultAvatar } = useContext(AuthContext)
+  const { user, defaultAvatar } = useContext(AuthContext)
   const [showComments, setShowComment] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
 
@@ -27,16 +27,16 @@ export default function Post ({ post }) {
             <figure className='image is-48x48'>
               <img
                 className='is-rounded'
-                src={post.profile.picture || defaultAvatar}
+                src={post.user.picture || defaultAvatar}
                 alt='Placeholder'
               />
             </figure>
           </div>
           <div className='media-content'>
             <p className='title is-4'>
-              {post.profile.user.first_name} {post.profile.user.last_name}
+               {post.user.fullname}
             </p>
-            <p className='subtitle is-6'>@{post.profile.user.username}</p>
+            <p className='subtitle is-6'>@{post.user.username}</p>
           </div>
 
           <div className='media-right'>
@@ -96,7 +96,7 @@ export default function Post ({ post }) {
           {/* <a>@bulmaio</a>.<a href='#'>#css</a>
           <a href='#'>#responsive</a> */}
           <br />
-          <time dateTime='2018-1-1'>{timeSince(post.created)}</time> ago
+          <time>{timeSince(post.created)}</time> ago
         </div>
         {showComments && [1, 2, 3, 4, 5].map(i => <Comment key={i} />)}
       </div>
