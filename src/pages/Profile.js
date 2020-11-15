@@ -9,7 +9,7 @@ import '../css/profile-card.css'
 import { getUserPosts } from '../api/users'
 import { AuthContext } from '../context/auth'
 
-export default function ProfileReview({ match: { params } }) {
+export default function ProfileReview ({ match: { params } }) {
   const { user } = useContext(AuthContext)
   const [isEdit, setIsEdit] = useState(false)
   const [posts, setPosts] = useState([])
@@ -20,7 +20,7 @@ export default function ProfileReview({ match: { params } }) {
     getUserPosts(params.id).then(res => {
       setPosts(res.results)
     })
-  }, user)
+  }, [user])
   return (
     <Main>
       <br />

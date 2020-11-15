@@ -5,7 +5,7 @@ export default function PostPreview ({ post }) {
   return (
     <article className='media box'>
       <div className='media-left'>
-        <p >
+        <p>
           <img className='image is-64x64' src={post.photo} />
         </p>
       </div>
@@ -23,23 +23,24 @@ export default function PostPreview ({ post }) {
           <div className='level-left'>
             &nbsp; &nbsp;
             <a className='level-item'>
+              {post.comments.length} &nbsp;
               <span className='icon is-small'>
-                <i className='fas fa-comments'></i> 10
+                <i className='fas fa-comments'></i>
               </span>
             </a>
             &nbsp; &nbsp;
             <a className='level-item has-text-danger'>
               <span className='icon is-small'>
-                <i className='fas fa-heart'></i> 1
+                {post.likes.length}&nbsp;<i className='fas fa-heart'></i>
               </span>
             </a>
           </div>
         </nav>
       </div>
       <div className='media-right'>
-        <PostOptions/>
+        <PostOptions post={post} />
       </div>
-      <hr/>
+      <hr />
     </article>
   )
 }
