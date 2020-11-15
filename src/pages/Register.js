@@ -8,12 +8,13 @@ import '../css/register.css'
 export default function Register () {
   const history = useHistory()
   const [isLoading, setIsLoading] = useState(false)
+  const [errors, setErrors] = useState([])
   const [user, setUser] = useState({
-    username: '',
-    fullname: '',
-    email: '',
-    password: '',
-    password_confirm: ''
+    username: 'rnovec98',
+    fullname: 'Raul Novelo',
+    email: 'raul.novelo@aaaimx.org',
+    password: '12345',
+    password_confirm: '123456'
   })
 
   function onChange (e) {
@@ -25,11 +26,12 @@ export default function Register () {
   const onSubmit = async e => {
     e.preventDefault()
     setIsLoading(true)
+    setErrors([])
     try {
       await register(user)
       history.push('/')
     } catch (error) {
-      console.log(error)
+      setErrors(Object.entries(error))
     } finally {
       setIsLoading(false)
     }
@@ -61,36 +63,60 @@ export default function Register () {
                   autocomplete='username'
                   placeholder='Username'
                   name='username'
+                  value={user.username}
                   onChange={onChange}
+                  required
                 />
                 <Input
-                  autocomplete='fullname'
+                  autocomplete='name'
                   placeholder='Full name'
                   name='fullname'
+                  value={user.fullname}
                   onChange={onChange}
+                  required
                 />
                 <Input
                   autocomplete='email'
                   type='email'
                   placeholder='Email'
                   name='email'
+                  value={user.email}
                   onChange={onChange}
+                  required
                 />
                 <Input
                   autocomplete='password'
                   type='password'
                   placeholder='Password'
                   name='password'
+                  isPassword
+                  value={user.password}
                   onChange={onChange}
+                  required
                 />
                 <Input
                   autocomplete='password_confirm'
                   type='password'
                   placeholder='Confirm'
                   name='password_confirm'
+                  isPassword
+                  value={user.password_confirm}
                   onChange={onChange}
+                  required
                 />
-                <button className={`button is-rounded is-block is-primary is-fullwidth ${isLoading ? 'is-loading' : ''}`}>
+                {errors.length ? (
+                  <div className='field'>
+                    <p className='help is-danger'>{errors[0][1] || ''}</p>
+                  </div>
+                ) : (
+                  <></>
+                )}
+
+                <button
+                  className={`button is-medium is-rounded is-block is-primary is-fullwidth ${
+                    isLoading ? 'is-loading' : ''
+                  }`}
+                >
                   Submit
                 </button>
                 <br />

@@ -9,13 +9,7 @@ export default function Login () {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
-
   const { authenticate } = useContext(AuthContext)
-
-  function togglePassword () {
-    setShowPassword(!showPassword)
-  }
 
   function onChangeUsername (e) {
     setUsername(e.target.value)
@@ -47,45 +41,25 @@ export default function Login () {
             width='325px'
           />
           <form onSubmit={onSubmit}>
-            <div className='field'>
-              <div className='control has-icons-left'>
-                <input
-                  className='input is-rounded'
-                  type='text'
-                  placeholder='Username'
-                  autoComplete='username'
-                  onChange={onChangeUsername}
-                  required
-                />
-                <span className='icon is-small is-left'>
-                  <i className='material-icons'>email</i>
-                </span>
-              </div>
-            </div>
-            <div className='field'>
-              <div className='control has-icons-left has-icons-right'>
-                <input
-                  className='input is-rounded'
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder='**********'
-                  onChange={onChangePassword}
-                  autoComplete='current-password'
-                  required
-                />
-                <span className='icon is-small is-left'>
-                  <i className='material-icons'>lock</i>
-                </span>
-
-                <span
-                  className='icon is-small is-right is-clickable'
-                  onClick={togglePassword}
-                >
-                  <i className='material-icons'>
-                    {showPassword ? 'visibility' : 'visibility_off'}
-                  </i>
-                </span>
-              </div>
-            </div>
+            <Input
+              className='input is-rounded'
+              type='text'
+              placeholder='Username'
+              autoComplete='username'
+              icon='email'
+              onChange={onChangeUsername}
+              required
+            />
+            <Input
+              autocomplete='password'
+              type='password'
+              placeholder='Password'
+              name='password'
+              icon='lock'
+              isPassword
+              onChange={onChangePassword}
+              required
+            />{' '}
             <div className='field'>
               <label className='checkbox'>
                 <input type='checkbox' /> Remember me
