@@ -1,4 +1,3 @@
-import { remove } from 'js-cookie'
 import React, { createContext, useState } from 'react'
 import { getPosts, removePost } from '../api/posts'
 

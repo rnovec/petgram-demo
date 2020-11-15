@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react'
-import { getPostComments } from '../api/posts'
+import { useContext, useEffect, useState } from 'react'
+import { getPostComments, postLike } from '../api/posts'
 import { AuthContext } from '../context/auth'
 import { timeSince } from '../util/time'
 import AddComment from './AddComment'
@@ -9,8 +9,14 @@ import PostOptions from './PostOptions'
 export default function Post ({ post }) {
   const { user, defaultAvatar } = useContext(AuthContext)
   const [showComments, setShowComment] = useState(false)
+  const [likeCont, setLikeCont] = useState(0)
+  const [isLiked, setIsliked] = useState(false)
   const [comments, setComments] = useState([])
-  const [isLiked, setIsLiked] = useState(false)
+
+  useEffect(() => {
+    setLikeCont(post.likes.length)
+    if (post.likes.indexOf(user.id) !== -1) setIsliked(true)
+  }, [user])
 
   async function toggleComments (e) {
     const res = await getPostComments(post.uuid)
@@ -18,9 +24,23 @@ export default function Post ({ post }) {
     setShowComment(!showComments)
   }
 
-  function likeDislike (e) {
-    setIsLiked(!isLiked)
+  async function likeDislike (e) {
     e.preventDefault()
+    if (!isLiked) {
+      await postLike(post.uuid, {
+        user: user.id,
+        action: 'liked'
+      })
+      setLikeCont(likeCont + 1)
+      setIsliked(true)
+    } else {
+      await postLike(post.uuid, {
+        user: user.id,
+        action: 'dislike'
+      })
+      setLikeCont(likeCont - 1)
+      setIsliked(false)
+    }
   }
 
   return (
@@ -73,7 +93,7 @@ export default function Post ({ post }) {
         </div>
 
         <div className='content'>
-          <strong>32 Likes</strong>
+          <strong>{likeCont} Likes</strong>
           <br />
           {post.description}
           {/* <a>@bulmaio</a>.<a href='#'>#css</a>
@@ -87,7 +107,7 @@ export default function Post ({ post }) {
           ))}
       </div>
 
-      <div id="add-comment" className='card-footer'>
+      <div id='add-comment' className='card-footer'>
         <div className='column is-12'>
           <AddComment post_id={post.uuid} onComment={toggleComments} />
         </div>
