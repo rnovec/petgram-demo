@@ -18,10 +18,15 @@ export const PostContextProvider = ({ children }) => {
     setPosts(posts.filter(post => post.uuid !== id))
   }
 
+  const addPost = (post) => {
+    setPosts([post, ...posts])
+  }
+
   const contextValue = {
     posts,
     setPosts,
     getPostList,
+    addPost,
     deletePost
   }
 

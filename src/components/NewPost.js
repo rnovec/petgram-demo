@@ -2,10 +2,12 @@ import { useState, useContext } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { createPost } from '../api/posts'
 import { AuthContext } from '../context/auth'
+import { PostContext } from '../context/posts'
 
 export default function NewPost () {
   const history = useHistory()
   const { user, defaultAvatar } = useContext(AuthContext)
+  const { addPost } = useContext(PostContext)
   const [selectedFile, setSelectedFile] = useState(null)
   const [filename, setFilename] = useState('')
   const [description, setDescription] = useState('')
@@ -30,7 +32,8 @@ export default function NewPost () {
       form_data.append('description', description)
       form_data.append('user_id', user.id)
       try {
-        await createPost(form_data)
+        const data = await createPost(form_data)
+        addPost(data)
         setDescription('')
         setSelectedFile({})
         setFilename('')
