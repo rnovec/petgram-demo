@@ -20,7 +20,7 @@ export default function App () {
           <Login />
         </Route>
         <GuardedRoute
-          path='/profile'
+          path='/profile/:id'
           component={Profile}
           auth={isAuthenticated}
         />

@@ -5,8 +5,8 @@ export default function PostPreview ({ post }) {
   return (
     <article className='media box'>
       <div className='media-left'>
-        <p className='image is-64x64'>
-          <img src={post.photo} />
+        <p >
+          <img className='image is-64x64' src={post.photo} />
         </p>
       </div>
       <div className='media-content'>

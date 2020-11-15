@@ -8,7 +8,7 @@ export function ConfirmDelete () {
   }
   return (
     <>
-      <a onClick={toggleModal} class='dropdown-item has-text-danger'>
+      <a onClick={toggleModal} className='dropdown-item has-text-danger'>
         Delete post
       </a>
       <div className={`modal ${showModal ? 'is-active' : ''}`}>
@@ -17,7 +17,7 @@ export function ConfirmDelete () {
           <header className='modal-card-head'>
             <p className='modal-card-title'>Are you sure?</p>
           </header>
-          <section class='modal-card-body'>
+          <section className='modal-card-body'>
             This action will <b>permanently destroy the post</b>.
           </section>
           <footer className='modal-card-foot has-text-left'>
