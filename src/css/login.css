@@ -26,6 +26,11 @@ input {
   background: var(--shadowDark) !important;
 }
 
+.control .icon.is-clickable {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
 a {
   font-weight: 600;
 }
