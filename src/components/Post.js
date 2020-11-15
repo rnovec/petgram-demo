@@ -42,7 +42,7 @@ export default function Post ({ post }) {
           </div>
           {user.id === post.user.id && (
             <div className='media-right'>
-              <PostOptions />
+              <PostOptions post={post} />
             </div>
           )}
         </div>

@@ -1,10 +1,20 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { PostContext } from '../context/posts'
 
-export function ConfirmDelete () {
+export function ConfirmDelete ({ post_id }) {
+  const { deletePost } = useContext(PostContext)
   const [showModal, setShowModal] = useState(false)
-  function toggleModal(e) {
-    e.preventDefault();
+  const [isLoading, setIsLoading] = useState(false)
+
+  function toggleModal (e) {
+    e.preventDefault()
     setShowModal(!showModal)
+  }
+  async function onDeletePost () {
+    setIsLoading(true)
+    await deletePost(post_id)
+    setShowModal(false)
+    setIsLoading(false)
   }
   return (
     <>
@@ -21,9 +31,14 @@ export function ConfirmDelete () {
             This action will <b>permanently destroy the post</b>.
           </section>
           <footer className='modal-card-foot has-text-left'>
-            <button className='button is-danger'>Remove</button>
+            <button
+              className={`button is-danger ${isLoading ? 'is-loading' : ''}`}
+              onClick={onDeletePost}
+            >
+              Yes, I'm sure
+            </button>
             <button className='button' onClick={toggleModal}>
-              Cancel
+              No, take me back
             </button>
           </footer>
         </div>

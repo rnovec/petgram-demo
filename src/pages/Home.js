@@ -19,8 +19,8 @@ export default function Home () {
         <div className='columns body-columns'>
           <div className='column is-half is-offset-one-quarter'>
             <NewPost />
-            {posts.map((post, i) => (
-              <Post post={post} key={i} />
+            {posts.map((post) => (
+              <Post post={post} key={post.uuid} />
             ))}
           </div>
         </div>

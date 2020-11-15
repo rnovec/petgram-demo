@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ConfirmDelete } from './ConfirmDelete'
 
-export default function PostOptions () {
+export default function PostOptions ({ post }) {
   const [showOptions, setShowOptions] = useState(false)
   function toggleOptions (e) {
     e.preventDefault()
@@ -23,7 +23,7 @@ export default function PostOptions () {
             Share
           </a>
           <hr className='dropdown-divider' />
-          <ConfirmDelete/>
+          <ConfirmDelete post_id={post.uuid} />
         </div>
       </div>
     </div>
