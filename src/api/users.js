@@ -25,10 +25,10 @@ export function getUserInfo (id) {
   })
 }
 
-export function updateProfile (id, data) {
+export function updateProfile (id, data, headers = {}) {
   return request({
     url: `/users/${id}`,
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers,
     method: 'PUT',
     data
   })
@@ -40,4 +40,3 @@ export function getUserPosts (id) {
     method: 'GET'
   })
 }
-

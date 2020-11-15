@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
+import { updateProfile } from '../api/users'
 import { AuthContext } from '../context/auth'
 
 export default function ProfileForm () {
-  const { user } = useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext)
+  const [isLoading, setIsLoading] = useState(false)
   const [form, setForm] = useState({
     username: '',
     fullname: '',
@@ -19,8 +21,20 @@ export default function ProfileForm () {
     setForm({ ...form, [attr]: val })
   }
 
+  async function onSubmit (e) {
+    e.preventDefault()
+    setIsLoading(true)
+    try {
+      const data = await updateProfile(user.id, form)
+      setUser(data)
+    } catch (error) {
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
-    <form>
+    <form className='box' onSubmit={onSubmit}>
       <h3>Basic Info</h3>
       <div className='field is-horizontal'>
         <div className='field-label is-normal'>
@@ -87,7 +101,7 @@ export default function ProfileForm () {
         <div className='field-body'>
           <div className='field'>
             <div className='control'>
-              <button className='button is-primary'>Save changes</button>
+              <button className={`button is-primary ${isLoading ? 'is-loading' : ''}`}>Save changes</button>
             </div>
           </div>
         </div>

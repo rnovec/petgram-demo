@@ -40,8 +40,11 @@ export default function ProfileForm () {
       form_data.append('username', user.username)
       form_data.append('address', form.address)
       form_data.append('phone', form.phone)
-      const data = await updateProfile(user.id, form_data)
+      const data = await updateProfile(user.id, form_data, {
+        'Content-Type': 'multipart/form-data'
+      })
       setUser(data)
+      setSelectedFile({})
     } catch (error) {
     } finally {
       setIsLoading(false)
@@ -49,7 +52,7 @@ export default function ProfileForm () {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className='box' onSubmit={onSubmit}>
       <h3>Profile</h3>
 
       <div className='field is-horizontal'>
@@ -104,22 +107,20 @@ export default function ProfileForm () {
           <label className='label'>Phone</label>
         </div>
         <div className='field-body'>
-          <div className='field is-expanded'>
-            <div className='field has-addons'>
-              <p className='control'>
-                <a className='button is-static'>+52</a>
-              </p>
-              <p className='control is-expanded'>
-                <input
-                  className='input'
-                  type='tel'
-                  placeholder='Your phone number'
-                  name='phone'
-                  onChange={onChange}
-                  value={form.phone}
-                />
-              </p>
-            </div>
+          <div className='field has-addons'>
+            <p className='control'>
+              <a className='button is-static'>+52</a>
+            </p>
+            <p className='control is-expanded'>
+              <input
+                className='input'
+                type='tel'
+                placeholder='Your phone number'
+                name='phone'
+                onChange={onChange}
+                value={form.phone}
+              />
+            </p>
           </div>
         </div>
       </div>
