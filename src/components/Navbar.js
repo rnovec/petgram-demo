@@ -4,7 +4,7 @@ import { AuthContext } from '../context/auth'
 
 export default function Navbar () {
   const history = useHistory()
-  const { logout } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
 
   function handleLogout () {
     logout()
@@ -35,7 +35,7 @@ export default function Navbar () {
         <Link className='navbar-item' to='/'>
           <i className='material-icons'>home</i>
         </Link>
-        <Link to='/profile' className='navbar-item'>
+        <Link to={'/profile/' + user.id} className='navbar-item'>
           <i className='material-icons'>person_outline</i>
         </Link>
         <a className='navbar-item' onClick={handleLogout}>
