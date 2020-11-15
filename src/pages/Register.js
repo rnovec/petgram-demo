@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { register } from '../api/users'
 import Input from '../components/Input'
+import { AuthContext } from '../context/auth'
 import '../css/register.css'
 
 export default function Register () {
   const history = useHistory()
+  const { authenticate } = useContext(AuthContext)
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState([])
   const [user, setUser] = useState({
-    username: 'rnovec98',
+    username: 'rnovec',
     fullname: 'Raul Novelo',
-    email: 'raul.novelo@aaaimx.org',
-    password: '12345',
-    password_confirm: '123456'
+    email: 'example@example.com',
+    password: '(08642)!2a',
+    password_confirm: '(08642)!2a'
   })
 
   function onChange (e) {
@@ -28,7 +30,9 @@ export default function Register () {
     setIsLoading(true)
     setErrors([])
     try {
+      const { username, password } = user
       await register(user)
+      await authenticate({ username, password })
       history.push('/')
     } catch (error) {
       setErrors(Object.entries(error))
