@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { createComment } from '../api/posts'
 import { AuthContext } from '../context/auth'
 
-export default function AddComment ({ post_id, onComment }) {
+export default function CommentBox ({ post_id, ...props }) {
   const { user, defaultAvatar } = useContext(AuthContext)
   const [message, setMessage] = useState('')
 
@@ -14,13 +14,13 @@ export default function AddComment ({ post_id, onComment }) {
   async function onSubmit (e) {
     e.preventDefault()
     if (message.trim()) {
-      await createComment({
+      const data = await createComment({
         user_id: user.id,
         post_id,
         message
       })
       setMessage('')
-      onComment()
+      props.onComment(data)
     }
   }
 
@@ -38,6 +38,7 @@ export default function AddComment ({ post_id, onComment }) {
               <textarea
                 className='textarea'
                 rows='3'
+                value={message}
                 onChange={onChangeMessage}
                 placeholder='Add a comment...'
               ></textarea>

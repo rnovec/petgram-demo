@@ -8,7 +8,7 @@ import PostOptions from './PostOptions'
 
 export default function Post ({ post }) {
   const { user, defaultAvatar } = useContext(AuthContext)
-  const [showComments, setShowComment] = useState(false)
+  const [showComments, setShowComments] = useState(false)
   const [likeCont, setLikeCont] = useState(0)
   const [isLiked, setIsliked] = useState(false)
   const [comments, setComments] = useState([])
@@ -16,12 +16,15 @@ export default function Post ({ post }) {
   useEffect(() => {
     setLikeCont(post.likes.length)
     if (post.likes.indexOf(user.id) !== -1) setIsliked(true)
-  }, [user])
+    ;(async () => {
+      const res = await getPostComments(post.uuid)
+      setComments(res.results)
+    })()
+  }, [user, showComments])
 
-  async function toggleComments (e) {
-    const res = await getPostComments(post.uuid)
-    setComments(res.results)
-    setShowComment(!showComments)
+  function onComment(newComment) {
+    setComments([...comments, newComment])
+    setShowComments(true)
   }
 
   async function likeDislike (e) {
@@ -84,7 +87,7 @@ export default function Post ({ post }) {
             </div>
             <div className='level-item has-text-centered'>
               <div>
-                <a onClick={toggleComments}>
+                <a onClick={() => setShowComments(true)}>
                   <i className='material-icons'>chat_bubble_outline</i>
                 </a>
               </div>
@@ -109,7 +112,10 @@ export default function Post ({ post }) {
 
       <div id='add-comment' className='card-footer'>
         <div className='column is-12'>
-          <AddComment post_id={post.uuid} onComment={toggleComments} />
+          <AddComment
+            post_id={post.uuid}
+            onComment={onComment}
+          />
         </div>
       </div>
     </div>
