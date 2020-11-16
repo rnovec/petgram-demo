@@ -39,7 +39,6 @@ export function isNearbyToExpire(token) {
   exp.setUTCSeconds(decoded.exp)
   const diffMs = exp - today
   const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000) // minutes
-  console.log(diffMins)
   return diffMins < 15
 }
 

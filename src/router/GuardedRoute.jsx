@@ -6,7 +6,6 @@ const GuardedRoute = ({ component: Component, auth, ...rest }) => {
   const token = getToken()
 
   if (token) {
-    console.log(window.location.href)
     return <Route {...rest} render={props => <Component {...props} />} />
   }
 
