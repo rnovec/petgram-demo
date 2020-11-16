@@ -16,12 +16,7 @@ export default function PostOptions ({ post }) {
       </div>
       <div className='dropdown-menu' id='dropdown-menu3' role='menu'>
         <div className='dropdown-content'>
-          <a href='#' className='dropdown-item'>
-            Edit
-          </a>
-          <a href='#' className='dropdown-item'>
-            Share
-          </a>
+          
           <hr className='dropdown-divider' />
           <ConfirmDelete post_id={post.uuid} />
         </div>
