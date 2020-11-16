@@ -7,10 +7,9 @@ export const PostContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([])
   const [currentPost, setCurrentPost] = useState({})
 
-  const getPostList = async () => {
-    const data = await getPosts()
-    setPosts(data.results)
-    Promise.resolve(data)
+  const getPostList = async (params = {}) => {
+    const data = await getPosts(params)
+    setPosts([...posts, ...data.results])
   }
 
   const deletePost = async id => {

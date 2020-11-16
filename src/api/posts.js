@@ -1,9 +1,10 @@
 import request from '../util/axios'
 
-export function getPosts () {
+export function getPosts (params) {
   return request({
     url: '/posts',
-    method: 'GET'
+    method: 'GET',
+    params
   })
 }
 

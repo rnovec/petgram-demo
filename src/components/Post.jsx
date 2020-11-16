@@ -20,7 +20,7 @@ export default function Post ({ post }) {
       const res = await getPostComments(post.uuid)
       setComments(res.results)
     })()
-  }, [user, showComments])
+  }, [showComments])
 
   function onComment (newComment) {
     setComments([...comments, newComment])
@@ -51,9 +51,10 @@ export default function Post ({ post }) {
       <div className='header'>
         <div className='media'>
           <div className='media-left'>
-            <figure className='image is-48x48'>
+            <figure className='image is-48x48 '>
               <img
                 className='is-rounded'
+                height='0'
                 src={post.user.picture || defaultAvatar}
                 alt='Placeholder'
               />
