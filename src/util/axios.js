@@ -18,7 +18,7 @@ _axios.interceptors.request.use(async config => {
   if (!config.public) {
     config.headers.Authorization = 'Bearer ' + token
 
-    if (isNearbyToExpire(token)) {
+    if (isNearbyToExpire(token) && !config.url.match(/refresh/)) {
       const refresh = getRefreshToken()
       config.headers.Authorization = 'Bearer ' + token
       const res = await refreshToken({ refresh })
