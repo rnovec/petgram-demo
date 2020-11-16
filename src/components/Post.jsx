@@ -22,7 +22,7 @@ export default function Post ({ post }) {
     })()
   }, [user, showComments])
 
-  function onComment(newComment) {
+  function onComment (newComment) {
     setComments([...comments, newComment])
     setShowComments(true)
   }
@@ -87,9 +87,15 @@ export default function Post ({ post }) {
             </div>
             <div className='level-item has-text-centered'>
               <div>
-                <a onClick={() => setShowComments(true)}>
-                  <i className='material-icons'>chat_bubble_outline</i>
-                </a>
+                {showComments ? (
+                  <a onClick={() => setShowComments(false)}>
+                    <i className='material-icons'>chat_bubble</i>
+                  </a>
+                ) : (
+                  <a onClick={() => setShowComments(true)}>
+                    <i className='material-icons'>chat_bubble_outline</i>
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -112,10 +118,7 @@ export default function Post ({ post }) {
 
       <div id='add-comment' className='card-footer'>
         <div className='column is-12'>
-          <AddComment
-            post_id={post.uuid}
-            onComment={onComment}
-          />
+          <AddComment post_id={post.uuid} onComment={onComment} />
         </div>
       </div>
     </div>
