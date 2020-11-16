@@ -1,4 +1,4 @@
-import Main from '../layouts/Main'
+import Main from './Main'
 import { useContext } from 'react'
 import { AuthContext } from '../context/auth'
 import '../css/profile.css'
