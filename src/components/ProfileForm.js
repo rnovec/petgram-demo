@@ -6,6 +6,7 @@ export default function ProfileForm () {
   const { user, setUser } = useContext(AuthContext)
   const [selectedFile, setSelectedFile] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [checked, setChecked] = useState(false)
 
   const [form, setForm] = useState({
     id: null,
@@ -16,12 +17,12 @@ export default function ProfileForm () {
 
   useEffect(() => {
     setForm(user)
-    console.log(user)
   }, [])
 
   function onChange (e) {
     const val = e.target.value
     const attr = e.target.name
+    console.log(val)
     setForm({ ...form, [attr]: val })
   }
 
@@ -36,10 +37,12 @@ export default function ProfileForm () {
       const form_data = new FormData()
       if (selectedFile.name)
         form_data.append('picture', selectedFile, selectedFile.name)
+      if (checked) form_data.append('clearAvatar', checked)
       form_data.append('email', user.email)
       form_data.append('username', user.username)
       form_data.append('address', form.address)
       form_data.append('phone', form.phone)
+
       const data = await updateProfile(user.id, form_data, {
         'Content-Type': 'multipart/form-data'
       })
@@ -60,7 +63,7 @@ export default function ProfileForm () {
           <label className='label'>Avatar</label>
         </div>
         <div className='field-body'>
-          <div className='file has-name'>
+          <div className='field file has-name'>
             <label className='file-label'>
               <input
                 className='file-input'
@@ -74,10 +77,36 @@ export default function ProfileForm () {
                 </span>
                 <span className='file-label'>Change avatar</span>
               </span>
+
               {selectedFile.name && (
                 <span className='file-name'>{selectedFile.name}</span>
               )}
             </label>
+          </div>
+          {user.picture && (
+            <p className='help'>
+              <a target='_blank' href={user.picture}>
+                Current
+              </a>
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div class='field is-horizontal'>
+        <div className='field-label'></div>
+        <div className='field-body'>
+          <div className='field'>
+            <div class='control'>
+              <label class='checkbox'>
+                <input
+                  type='checkbox'
+                  checked={checked}
+                  onChange={() => setChecked(!checked)}
+                />{' '}
+                &nbsp;Clear avatar
+              </label>
+            </div>
           </div>
         </div>
       </div>

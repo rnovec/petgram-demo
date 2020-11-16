@@ -25,6 +25,8 @@ export default function ProfileForm () {
     e.preventDefault()
     setIsLoading(true)
     try {
+      const postForm = form
+      delete postForm.picture
       const data = await updateProfile(user.id, form)
       setUser(data)
     } catch (error) {
@@ -101,7 +103,11 @@ export default function ProfileForm () {
         <div className='field-body'>
           <div className='field'>
             <div className='control'>
-              <button className={`button is-primary ${isLoading ? 'is-loading' : ''}`}>Save changes</button>
+              <button
+                className={`button is-primary ${isLoading ? 'is-loading' : ''}`}
+              >
+                Save changes
+              </button>
             </div>
           </div>
         </div>

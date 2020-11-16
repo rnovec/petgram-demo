@@ -34,6 +34,13 @@ export function updateProfile (id, data, headers = {}) {
   })
 }
 
+export function removePicture (id) {
+  return request({
+    url: `/users/${id}/picture`,
+    method: 'PATCH'
+  })
+}
+
 export function getUserPosts (id) {
   return request({
     url: `/users/${id}/posts`,
