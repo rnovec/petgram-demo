@@ -14,7 +14,7 @@ export default function Navbar () {
     <div className='navbar is-inline-flex is-transparent'>
       <div className='navbar-brand'>
         <Link to='/' className='navbar-item'>
-          <img src='/petgram-demo/logo.png' />
+          <img src='/petgram-demo/img/logo.png' />
         </Link>
       </div>
       <div className='navbar-menu'>

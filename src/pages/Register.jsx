@@ -136,25 +136,25 @@ export default function Register () {
           <nav className='level'>
             <div className='level-left'>
               <div className='level-item'>
-                <span className='icon'>
-                  <i className='fab fa-twitter'></i>
-                </span>{' '}
-                &emsp;
-                <span className='icon'>
+                <a className='icon'>
                   <i className='fab fa-facebook'></i>
-                </span>{' '}
+                </a>{' '}
                 &emsp;
-                <span className='icon'>
+                <a className='icon'>
                   <i className='fab fa-instagram'></i>
-                </span>{' '}
+                </a>{' '}
                 &emsp;
-                <span className='icon'>
+                <a
+                  className='icon'
+                  target='_blank'
+                  href='https://github.com/rnovec/petgram-demo'
+                >
                   <i className='fab fa-github'></i>
-                </span>{' '}
+                </a>{' '}
                 &emsp;
-                <span className='icon'>
+                <a className='icon' href='mailto:raul.novelo@aaaimx.org'>
                   <i className='fas fa-envelope'></i>
-                </span>
+                </a>
               </div>
             </div>
             <div className='level-right'>

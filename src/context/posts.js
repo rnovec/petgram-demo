@@ -5,6 +5,7 @@ export const PostContext = createContext()
 
 export const PostContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([])
+  const [currentPost, setCurrentPost] = useState({})
 
   const getPostList = async () => {
     const data = await getPosts()
@@ -23,6 +24,8 @@ export const PostContextProvider = ({ children }) => {
 
   const contextValue = {
     posts,
+    currentPost,
+    setCurrentPost,
     setPosts,
     getPostList,
     addPost,

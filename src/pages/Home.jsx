@@ -6,13 +6,13 @@ import { PostContext } from '../context/posts'
 import '../css/index.css'
 
 export default function Home () {
-  const { posts, getPostList } = useContext(PostContext)
+  const { posts, currentPost, getPostList } = useContext(PostContext)
 
   useEffect(() => {
     ;(async () => {
       await getPostList()
     })()
-  }, [])
+  }, [currentPost])
   return (
     <Main>
       <section className='section'>

@@ -31,6 +31,16 @@ export function createPost (data) {
   })
 }
 
+export function updatePost (id, data, headers) {
+  return request({
+    url: `/posts/${id}`,
+    method: 'PUT',
+    headers,
+    data
+  })
+}
+
+
 export function removePost (id) {
   return request({
     url: `/posts/${id}`,

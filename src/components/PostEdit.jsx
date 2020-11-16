@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { updatePost } from '../api/posts'
+import { PostContext } from '../context/posts'
 import PostContent from './PostContent'
 
 export default function EditPostModal ({ post }) {
-  const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedFile, setSelectedFile] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
   const [filename, setFilename] = useState('')
   const [description, setDescription] = useState('')
-  const [showModal, setShowModal] = useState(false)
+  const { currentPost, setCurrentPost } = useContext(PostContext)
 
   useEffect(() => {
-    setDescription(post.description)
-  }, [])
+    setDescription(currentPost.description)
+  }, [currentPost])
 
-  function toggleModal (e) {
-    e.preventDefault()
-    setShowModal(!showModal)
-  }
-  function handleChange (e) {
+
+  function onFileChange (e) {
     if (e.target.files[0]) {
       setSelectedFile(e.target.files[0])
       setFilename(e.target.files[0].name.slice(0, 10))
@@ -26,13 +26,32 @@ export default function EditPostModal ({ post }) {
     setDescription(e.target.value)
   }
 
+  async function onSubmit (e) {
+    e.preventDefault()
+    setIsLoading(true)
+    try {
+      const form_data = new FormData()
+      if (selectedFile.name)
+        form_data.append('photo', selectedFile, selectedFile.name)
+      form_data.append('description', description)
+      const data = await updatePost(post.uuid, form_data, {
+        'Content-Type': 'multipart/form-data'
+      })
+      setSelectedFile({})
+      setFilename('')
+      setCurrentPost(data)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <>
       {' '}
-      <a onClick={toggleModal} className='dropdown-item'>
-        Edit
-      </a>
-      <div className={`modal ${showModal ? 'is-active' : ''}`}>
+      <div className={`modal ${currentPost.uuid ? 'is-active' : ''}`}>
         <div className='modal-background'></div>
         <div className='modal-card'>
           <header className='modal-card-head'>
@@ -40,15 +59,15 @@ export default function EditPostModal ({ post }) {
             <button
               className='delete'
               aria-label='close'
-              onClick={toggleModal}
+              onClick={() => setCurrentPost({})}
             ></button>
           </header>
           <section className='modal-card-body'>
             <article className='media'>
               <figure className='media-left'>
-                <img className='image is-128x128' src={post.photo} />
+                <img className='image is-128x128' src={currentPost.photo} />
               </figure>
-              <PostContent post={post} />
+              <PostContent post={currentPost} />
             </article>
             <form action=''>
               <div className='field'>
@@ -67,7 +86,7 @@ export default function EditPostModal ({ post }) {
                   <label className='file-label'>
                     <input
                       className='file-input'
-                      onChange={handleChange}
+                      onChange={onFileChange}
                       type='file'
                       name='resume'
                     />
@@ -84,8 +103,13 @@ export default function EditPostModal ({ post }) {
             </form>
           </section>
           <footer className='modal-card-foot'>
-            <button className='button is-success'>Save changes</button>
-            <button className='button' onClick={toggleModal}>
+            <button
+              className={`button is-primary ${isLoading ? 'is-loading' : ''}`}
+              onClick={onSubmit}
+            >
+              Save changes
+            </button>
+            <button className='button' onClick={() => setCurrentPost({})}>
               Cancel
             </button>
           </footer>

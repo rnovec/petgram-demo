@@ -8,9 +8,11 @@ import '../css/profile.css'
 import '../css/profile-card.css'
 import { getUserPosts } from '../api/users'
 import { AuthContext } from '../context/auth'
+import { PostContext } from '../context/posts'
 
 export default function ProfileReview ({ match: { params } }) {
   const { user } = useContext(AuthContext)
+  const { currentPost } = useContext(PostContext)
   const [isEdit, setIsEdit] = useState(false)
   const [posts, setPosts] = useState([])
   function toggleTab () {
@@ -20,7 +22,7 @@ export default function ProfileReview ({ match: { params } }) {
     getUserPosts(params.id).then(res => {
       setPosts(res.results)
     })
-  }, [user])
+  }, [user, currentPost])
   return (
     <Main>
       <br />
