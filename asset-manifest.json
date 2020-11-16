@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/petgram-demo/static/css/main.e2fdeda0.chunk.css",
-    "main.js": "/petgram-demo/static/js/main.544373ef.chunk.js",
-    "main.js.map": "/petgram-demo/static/js/main.544373ef.chunk.js.map",
+    "main.js": "/petgram-demo/static/js/main.4c5ea354.chunk.js",
+    "main.js.map": "/petgram-demo/static/js/main.4c5ea354.chunk.js.map",
     "runtime-main.js": "/petgram-demo/static/js/runtime-main.a90cf890.js",
     "runtime-main.js.map": "/petgram-demo/static/js/runtime-main.a90cf890.js.map",
-    "static/js/2.efefcdf9.chunk.js": "/petgram-demo/static/js/2.efefcdf9.chunk.js",
-    "static/js/2.efefcdf9.chunk.js.map": "/petgram-demo/static/js/2.efefcdf9.chunk.js.map",
+    "static/js/2.22f56c58.chunk.js": "/petgram-demo/static/js/2.22f56c58.chunk.js",
+    "static/js/2.22f56c58.chunk.js.map": "/petgram-demo/static/js/2.22f56c58.chunk.js.map",
     "index.html": "/petgram-demo/index.html",
     "static/css/main.e2fdeda0.chunk.css.map": "/petgram-demo/static/css/main.e2fdeda0.chunk.css.map",
-    "static/js/2.efefcdf9.chunk.js.LICENSE.txt": "/petgram-demo/static/js/2.efefcdf9.chunk.js.LICENSE.txt"
+    "static/js/2.22f56c58.chunk.js.LICENSE.txt": "/petgram-demo/static/js/2.22f56c58.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a90cf890.js",
-    "static/js/2.efefcdf9.chunk.js",
+    "static/js/2.22f56c58.chunk.js",
     "static/css/main.e2fdeda0.chunk.css",
-    "static/js/main.544373ef.chunk.js"
+    "static/js/main.4c5ea354.chunk.js"
   ]
 }
