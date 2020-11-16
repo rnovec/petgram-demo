@@ -40,6 +40,6 @@ export function isNearbyToExpire(token) {
   const diffMs = exp - today
   const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000) // minutes
   console.log(diffMins)
-  return diffMins < 50
+  return diffMins < 15
 }
 
