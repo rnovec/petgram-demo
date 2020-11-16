@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { PostContext } from '../context/posts'
 
-export function ConfirmDelete ({ post_id }) {
+export default function ConfirmDelete ({ post_id }) {
   const { deletePost } = useContext(PostContext)
   const [showModal, setShowModal] = useState(false)
   const [isLoading, setIsLoading] = useState(false)

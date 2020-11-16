@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import Main from '../layouts/Main'
 import Post from '../components/Post'
-import NewPost from '../components/NewPost'
+import PostCreate from '../components/PostCreate'
 import { PostContext } from '../context/posts'
 import '../css/index.css'
 
@@ -18,7 +18,7 @@ export default function Home () {
       <section className='section'>
         <div className='columns body-columns'>
           <div className='column is-half is-offset-one-quarter'>
-            <NewPost />
+            <PostCreate />
             {posts.map((post) => (
               <Post post={post} key={post.uuid} />
             ))}

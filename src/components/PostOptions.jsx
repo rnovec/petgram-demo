@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { ConfirmDelete } from './ConfirmDelete'
+import ConfirmDelete from './ConfirmDelete'
+import PostEdit from './PostEdit'
 
 export default function PostOptions ({ post }) {
   const [showOptions, setShowOptions] = useState(false)
@@ -16,7 +17,7 @@ export default function PostOptions ({ post }) {
       </div>
       <div className='dropdown-menu' id='dropdown-menu3' role='menu'>
         <div className='dropdown-content'>
-          
+          <PostEdit post={post} />
           <hr className='dropdown-divider' />
           <ConfirmDelete post_id={post.uuid} />
         </div>

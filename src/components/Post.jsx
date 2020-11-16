@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { getPostComments, postLike } from '../api/posts'
 import { AuthContext } from '../context/auth'
 import { timeSince } from '../util/time'
-import AddComment from './AddComment'
+import AddComment from './CommentBox'
 import Comment from './Comment'
 import PostOptions from './PostOptions'
 
