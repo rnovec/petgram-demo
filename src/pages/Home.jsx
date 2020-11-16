@@ -4,7 +4,7 @@ import Post from '../components/Post'
 import PostCreate from '../components/PostCreate'
 import { PostContext } from '../context/posts'
 import '../css/index.css'
-import useInfiniteScroll from '../util/useInifiniteScroll'
+import useInfiniteScroll from '../hooks/useInifiniteScroll'
 
 export default function Home () {
   const { posts, currentPost, getPostList, setPost } = useContext(PostContext)
