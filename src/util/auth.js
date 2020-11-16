@@ -31,3 +31,15 @@ export function removeRefreshToken () {
 export function decodeToken (token) {
   return jwtDecode(token)
 }
+
+export function isNearbyToExpire(token) {
+  const decoded = decodeToken(token)
+  const today = new Date()
+  const exp = new Date(0)
+  exp.setUTCSeconds(decoded.exp)
+  const diffMs = exp - today
+  const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000) // minutes
+  console.log(diffMins)
+  return diffMins < 15
+}
+

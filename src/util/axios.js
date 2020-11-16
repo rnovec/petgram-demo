@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { getToken } from './auth'
+import { refreshToken } from '../api/users'
+import { getToken, isNearbyToExpire, getRefreshToken, setToken } from './auth'
 
 // create singleton for axios
 const _axios = axios.create({
@@ -12,10 +13,17 @@ const _axios = axios.create({
   timeout: 20000
 })
 
-_axios.interceptors.request.use(config => {
+_axios.interceptors.request.use(async config => {
   const token = getToken()
   if (!config.public) {
     config.headers.Authorization = 'Bearer ' + token
+
+    if (isNearbyToExpire(token)) {
+      const refresh = getRefreshToken()
+      config.headers.Authorization = 'Bearer ' + token
+      const res = await refreshToken({ refresh })
+      setToken(res.access)
+    }
   }
   return config
 })

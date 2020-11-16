@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react'
-import { login, getUserInfo } from '../api/users'
+import { login, getUserInfo, refreshToken } from '../api/users'
 import {
   decodeToken,
   getToken,

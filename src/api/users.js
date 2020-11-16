@@ -9,6 +9,15 @@ export function login (data) {
   })
 }
 
+export function refreshToken (data) {
+  return request({
+    url: '/token/refresh/',
+    method: 'POST',
+    data
+  })
+}
+
+
 export function register (data) {
   return request({
     url: '/accounts/register/',
