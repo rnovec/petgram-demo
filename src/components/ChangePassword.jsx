@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { changePassword } from '../api/users'
-import { AuthContext } from '../context/auth'
 import Input from './Input'
 
 export default function ProfileForm () {
