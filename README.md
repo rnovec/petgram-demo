@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+<img src="public/logo310.png" height="200px" align="right"/>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Petgram FrontEnd / SHM Development Challenge 2020
+
+## Content
+
+- [Original Challenge](https://shmerida.mx/docs/RetoDesarrolla.pdf)
+- [Live demo](https://rnovec.github.io/petgram-demo/#/)
+- [BackEnd API](https://github.com/rnovec/petgram-api)
 
 ## Available Scripts
 
