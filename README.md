@@ -8,6 +8,10 @@
 - [Live demo](https://rnovec.github.io/petgram-demo/#/)
 - [BackEnd API](https://github.com/rnovec/petgram-api)
 
+### Guest account
+- **Username**: guest
+- **Password**: (08642)!2a
+
 ## Available Scripts
 
 In the project directory, you can run:
