@@ -2,7 +2,7 @@ import request from '../util/axios'
 
 export function login (data) {
   return request({
-    url: '/token/access/',
+    url: '/accounts/login',
     method: 'POST',
     public: true,
     data
@@ -11,7 +11,7 @@ export function login (data) {
 
 export function refreshToken (data) {
   return request({
-    url: '/token/refresh/',
+    url: '/accounts/refresh',
     method: 'POST',
     data
   })
@@ -20,7 +20,7 @@ export function refreshToken (data) {
 
 export function register (data) {
   return request({
-    url: '/accounts/register/',
+    url: '/accounts/register',
     method: 'POST',
     public: true,
     data
