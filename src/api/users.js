@@ -27,6 +27,15 @@ export function register (data) {
   })
 }
 
+export function changePassword (data) {
+  return request({
+    url: '/accounts/change-password',
+    method: 'POST',
+    data
+  })
+}
+
+
 export function getUserInfo (id) {
   return request({
     url: `/users/${id}`,

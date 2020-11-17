@@ -5,6 +5,7 @@ export default function Input ({
   name,
   autocomplete,
   placeholder,
+  isRounded,
   value,
   required,
   icon,
@@ -23,7 +24,7 @@ export default function Input ({
         className={`control ${icon ? 'has-icons-left' : ''} has-icons-right`}
       >
         <input
-          className='input is-rounded'
+          className={`input ${ isRounded ? 'is-rounded' : ''}`}
           onChange={props.onChange}
           name={name}
           autoComplete={autocomplete}

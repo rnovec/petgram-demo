@@ -4,12 +4,13 @@ import Profile from '../layouts/Profile'
 import PostPreview from '../components/PostPreview'
 import ProfileForm from '../components/ProfileForm'
 import AccountForm from '../components/AccountForm'
-import '../css/profile.css'
-import '../css/profile-card.css'
-import { getUserPosts } from '../api/users'
+import ChangePassword from '../components/ChangePassword'
 import { AuthContext } from '../context/auth'
 import { PostContext } from '../context/posts'
+import { getUserPosts } from '../api/users'
 import useInfiniteScroll from '../hooks/useInifiniteScroll'
+import '../css/profile.css'
+import '../css/profile-card.css'
 
 export default function ProfileReview ({ match: { params } }) {
   const { user } = useContext(AuthContext)
@@ -78,6 +79,7 @@ export default function ProfileReview ({ match: { params } }) {
               <>
                 <AccountForm />
                 <ProfileForm />
+                <ChangePassword />
               </>
             ) : (
               <>
