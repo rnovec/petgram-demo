@@ -9,24 +9,48 @@ import '../css/profile-card.css'
 import { getUserPosts } from '../api/users'
 import { AuthContext } from '../context/auth'
 import { PostContext } from '../context/posts'
+import useInfiniteScroll from '../hooks/useInifiniteScroll'
 
 export default function ProfileReview ({ match: { params } }) {
   const { user } = useContext(AuthContext)
   const { currentPost } = useContext(PostContext)
+  const [isFetching, setIsFetching] = useInfiniteScroll(fetchUserPosts)
   const [isEdit, setIsEdit] = useState(false)
   const [posts, setPosts] = useState([])
+  const [total, setTotal] = useState(0)
+  const [listQuery, setListQuery] = useState({
+    limit: 10,
+    offset: 0
+  })
   function toggleTab () {
     setIsEdit(!isEdit)
   }
   useEffect(() => {
-    getUserPosts(params.id).then(res => {
-      setPosts(res.results)
-    })
+    fetchUserPosts()
   }, [user, currentPost])
+
+  async function fetchUserPosts () {
+    console.log(posts.length, total)
+    if (posts.length <= total && listQuery.offset > total) {
+      setIsFetching(false)
+      return
+    }
+    setIsFetching(true)
+    await getUserPosts(params.id).then(res => {
+      setPosts(res.results)
+      setTotal(res.count)
+    })
+    setIsFetching(false)
+    setListQuery({
+      limit: listQuery.limit,
+      offset: listQuery.offset + listQuery.limit
+    })
+  }
+
   return (
     <Main>
       <br />
-      <Profile>
+      <Profile total={total}>
         <div className='column is-8'>
           <div className='tabs is-centered is-boxed is-medium'>
             <ul>
@@ -58,7 +82,7 @@ export default function ProfileReview ({ match: { params } }) {
             ) : (
               <>
                 {' '}
-                {!posts.length ? (
+                {!posts.length && !isFetching ? (
                   <div className='notification is-link'>
                     <article className='media'>
                       <div className='media-left'>
@@ -79,6 +103,11 @@ export default function ProfileReview ({ match: { params } }) {
                   </div>
                 ) : (
                   posts.map(post => <PostPreview key={post.uuid} post={post} />)
+                )}
+                {isFetching && (
+                  <div className='has-text-centered'>
+                    Loading posts...
+                  </div>
                 )}
               </>
             )}

@@ -1,10 +1,9 @@
-import Main from './Main'
 import { useContext } from 'react'
 import { AuthContext } from '../context/auth'
 import '../css/profile.css'
 import '../css/profile-card.css'
 
-export default function Profile ({ children }) {
+export default function Profile ({ children, ...props }) {
   const { user, defaultAvatar } = useContext(AuthContext)
 
   return (
@@ -20,7 +19,7 @@ export default function Profile ({ children }) {
                 <div className='media-content'>
                   <p className='title is-4'>{user.fullname}</p>
                   <p className='subtitle is-6'>@{user.username}</p>
-                  <ul className='has-text-left'>
+                  <ul className='has-text-centered'>
                     <li>
                       <span className='icon'>
                         <i className='fas fa-envelope' aria-hidden='true'></i>
@@ -32,12 +31,12 @@ export default function Profile ({ children }) {
                 <br />
                 <footer className='card-footer'>
                   <div className='card-footer-item'>
-                    <span className='icon'>
-                      <i className='fas fa-image'></i>&nbsp;0
+                    <span className='icon has-text-info'>
+                      <i className='fas fa-image'></i>&nbsp;{props.total || 0}
                     </span>
                   </div>
                   <div className='card-footer-item'>
-                    <span className='icon'>
+                    <span className='icon has-text-danger'>
                       <i className='fas fa-heart'></i>&nbsp;0
                     </span>
                   </div>

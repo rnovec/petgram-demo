@@ -41,6 +41,8 @@ export default function NewPost () {
       } finally {
         setIsloading(false)
       }
+    } else {
+      alert('Please provide a description')
     }
   }
 
@@ -65,7 +67,9 @@ export default function NewPost () {
                 <textarea
                   className='textarea'
                   onChange={onDescriptionChange}
+                  value={description}
                   rows='3'
+                  required
                   placeholder='Add a description...'
                 ></textarea>
               </p>

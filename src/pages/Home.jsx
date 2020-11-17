@@ -43,7 +43,11 @@ export default function Home () {
             {posts.map(post => (
               <Post post={post} key={post.uuid} />
             ))}
-            {isFetching && 'Fetching more list items...'}
+            {isFetching && (
+              <div className='section has-text-centered'>
+                Loading latest posts...
+              </div>
+            )}
           </div>
         </div>
       </section>
