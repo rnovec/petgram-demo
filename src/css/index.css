@@ -47,6 +47,9 @@
 .card-footer .columns .column:last-child button {
   border: none;
 }
+.level.is-mobile {
+  margin-bottom: 0;
+}
 .footer {
   margin-top: 10vh;
   /* padding: 1rem; */

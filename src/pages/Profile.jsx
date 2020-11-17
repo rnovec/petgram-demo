@@ -83,7 +83,7 @@ export default function ProfileReview ({ match: { params } }) {
               <>
                 {' '}
                 {!posts.length && !isFetching ? (
-                  <div className='notification is-link'>
+                  <div className='notification is-info'>
                     <article className='media'>
                       <div className='media-left'>
                         <span className='icon'>
