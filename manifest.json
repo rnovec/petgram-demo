@@ -3,19 +3,14 @@
   "name": "Petgram",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo72.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "logo192.png",
+      "src": "/petgram-demo/logo192.png",
       "type": "image/png",
       "sizes": "192x192"
+    },
+    {
+      "src": "/petgram-demo/logo310.png",
+      "type": "image/png",
+      "sizes": "310x310"
     }
   ],
   "start_url": ".",
