@@ -16,11 +16,12 @@ export default function Post ({ post }) {
   useEffect(() => {
     setLikeCont(post.likes.length)
     if (post.likes.indexOf(user.id) !== -1) setIsliked(true)
-    ;(async () => {
-      const res = await getPostComments(post.uuid)
-      setComments(res.results)
-    })()
-  }, [showComments])
+  }, [post])
+
+  async function getComments () {
+    const res = await getPostComments(post.uuid)
+    setComments(res.results)
+  }
 
   function onComment (newComment) {
     setComments([...comments, newComment])
@@ -93,7 +94,12 @@ export default function Post ({ post }) {
                     <i className='material-icons'>chat_bubble</i>
                   </a>
                 ) : (
-                  <a onClick={() => setShowComments(true)}>
+                  <a
+                    onClick={() => {
+                      setShowComments(true)
+                      getComments()
+                    }}
+                  >
                     <i className='material-icons'>chat_bubble_outline</i>
                   </a>
                 )}

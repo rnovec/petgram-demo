@@ -7,21 +7,31 @@ import '../css/index.css'
 import useInfiniteScroll from '../hooks/useInifiniteScroll'
 
 export default function Home () {
-  const { posts, currentPost, getPostList, setPost } = useContext(PostContext)
-  const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreListItems)
+  const { posts, getPostList, total, setPosts } = useContext(PostContext)
+  const [isFetching, setIsFetching] = useInfiniteScroll(fetchMorePosts)
   const [listQuery, setListQuery] = useState({
     limit: 5,
     offset: 0
   })
 
-  async function fetchMoreListItems () {
+  useEffect(() => {
+    setPosts([])
+    fetchMorePosts()
+  }, [])
+
+  async function fetchMorePosts () {
+    console.log(posts.length, total)
+    if (posts.length <= total && listQuery.offset > total) {
+      setIsFetching(false)
+      return
+    }
     setIsFetching(true)
-    setListQuery(query => ({
-      limit: query.limit,
-      offset: query.offset + query.limit
-    }))
     await getPostList(listQuery)
     setIsFetching(false)
+    setListQuery({
+      limit: listQuery.limit,
+      offset: listQuery.offset + listQuery.limit
+    })
   }
 
   return (

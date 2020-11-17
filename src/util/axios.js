@@ -34,7 +34,13 @@ _axios.interceptors.response.use(
     return res.data
   },
   error => {
-    return Promise.reject(error.response.data)
+    try {
+      const { response } = error
+      return Promise.reject(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+    return Promise.reject(error)
   }
 )
 
