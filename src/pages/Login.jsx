@@ -36,10 +36,11 @@ export default function Login () {
       <div className='hero-body has-text-centered'>
         <div className='login'>
           <img
-            src='https://logoipsum.com/logo/logo-12.svg'
+            src='/petgram-demo/img/logo.png'
             alt='login-logo'
-            width='325px'
+            width='300px'
           />
+          <br/>
           <form onSubmit={onSubmit}>
             <Input
               className='input is-rounded'

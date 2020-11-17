@@ -12,11 +12,11 @@ export default function Register () {
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState([])
   const [user, setUser] = useState({
-    username: 'rnovec',
-    fullname: 'Raul Novelo',
-    email: 'example@example.com',
-    password: '(08642)!2a',
-    password_confirm: '(08642)!2a'
+    username: '',
+    fullname: '',
+    email: '',
+    password: '',
+    password_confirm: ''
   })
 
   function onChange (e) {
@@ -46,7 +46,7 @@ export default function Register () {
         <div className='column is-8 is-offset-2 register '>
           <div className='columns'>
             <div className='column left is-hidden-mobile'>
-              <img src='https://logoipsum.com/logo/logo-12.svg' />
+              <img src='/petgram-demo/img/woman_mevk.svg' />
               <h2 className='subtitle colored is-4'>
                 Lorem ipsum dolor sit amet.
               </h2>
@@ -56,7 +56,12 @@ export default function Register () {
                 soluta odio optio sed.
               </p>
             </div>
-            <div className='column right has-text-centered'>
+            <div className='column right has-text-centered justify-center'>
+              <img
+                src='/petgram-demo/img/logo.png'
+                alt='login-logo'
+                width='325px'
+              />
               <h1 className='title is-4'>Sign up today</h1>
               <p className='description'>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit
@@ -159,7 +164,7 @@ export default function Register () {
             </div>
             <div className='level-right'>
               <small className='level-item'>
-                &copy; logoipsum. All Rights Reserved.
+                &copy; Petgram. All Rights Reserved.
               </small>
             </div>
           </nav>
