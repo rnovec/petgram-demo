@@ -20,7 +20,6 @@ export default function Home () {
   }, [])
 
   async function fetchMorePosts () {
-    console.log(posts.length, total)
     if (posts.length <= total && listQuery.offset > total) {
       setIsFetching(false)
       return

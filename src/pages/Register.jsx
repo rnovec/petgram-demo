@@ -63,9 +63,6 @@ export default function Register () {
                 width='325px'
               />
               <h1 className='title is-4'>Sign up today</h1>
-              <p className='description'>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit
-              </p>
 
               <form onSubmit={onSubmit}>
                 <Input
@@ -74,6 +71,7 @@ export default function Register () {
                   name='username'
                   value={user.username}
                   onChange={onChange}
+                  isRounded
                   required
                 />
                 <Input
@@ -82,6 +80,7 @@ export default function Register () {
                   name='fullname'
                   value={user.fullname}
                   onChange={onChange}
+                  isRounded
                   required
                 />
                 <Input
@@ -91,6 +90,7 @@ export default function Register () {
                   name='email'
                   value={user.email}
                   onChange={onChange}
+                  isRounded
                   required
                 />
                 <Input
@@ -101,6 +101,7 @@ export default function Register () {
                   isPassword
                   value={user.password}
                   onChange={onChange}
+                  isRounded
                   required
                 />
                 <Input
@@ -111,6 +112,7 @@ export default function Register () {
                   isPassword
                   value={user.password_confirm}
                   onChange={onChange}
+                  isRounded
                   required
                 />
                 {errors.length ? (

@@ -31,7 +31,6 @@ export default function ProfileReview ({ match: { params } }) {
   }, [user, currentPost])
 
   async function fetchUserPosts () {
-    console.log(posts.length, total)
     if (posts.length <= total && listQuery.offset > total) {
       setIsFetching(false)
       return

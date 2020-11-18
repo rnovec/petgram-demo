@@ -21,10 +21,12 @@ export default function Input ({
   return (
     <div className='field'>
       <div
-        className={`control ${icon ? 'has-icons-left' : ''} has-icons-right`}
+        className={`control ${icon ? 'has-icons-left' : ''} ${
+          isPassword ? 'has-icons-right' : ''
+        }`}
       >
         <input
-          className={`input ${ isRounded ? 'is-rounded' : ''}`}
+          className={`input ${isRounded ? 'is-rounded' : ''}`}
           onChange={props.onChange}
           name={name}
           autoComplete={autocomplete}

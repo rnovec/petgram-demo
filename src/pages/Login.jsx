@@ -40,15 +40,16 @@ export default function Login () {
             alt='login-logo'
             width='300px'
           />
-          <br/>
+          <br />
           <form onSubmit={onSubmit}>
             <Input
               className='input is-rounded'
               type='text'
               placeholder='Username'
               autoComplete='username'
-              icon='email'
+              icon='person'
               onChange={onChangeUsername}
+              isRounded
               required
             />
             <Input
@@ -59,13 +60,9 @@ export default function Login () {
               icon='lock'
               isPassword
               onChange={onChangePassword}
+              isRounded
               required
             />{' '}
-            <div className='field'>
-              <label className='checkbox'>
-                <input type='checkbox' /> Remember me
-              </label>
-            </div>
             <button
               className={`button is-block is-fullwidth is-primary is-medium is-rounded ${
                 isLoading ? 'is-loading' : ''
@@ -83,9 +80,7 @@ export default function Login () {
               </div>
             </div> */}
             <div className='level-item has-text-centered'>
-              <div>
-                <Link to='/register'>Create an Account</Link>
-              </div>
+              <Link to='/register'>Create an Account</Link>
             </div>
           </nav>
         </div>

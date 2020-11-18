@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { updateProfile } from '../api/users'
 import { AuthContext } from '../context/auth'
+import Input from './Input'
 
 export default function ProfileForm () {
   const { user, setUser } = useContext(AuthContext)
@@ -43,39 +44,24 @@ export default function ProfileForm () {
           <label className='label'>Account</label>
         </div>
         <div className='field-body'>
-          <div className='field'>
-            <p className='control is-expanded has-icons-left'>
-              <input
-                className='input'
-                type='text'
-                placeholder='Username'
-                name='username'
-                onChange={onChange}
-                value={form.username}
-              />
-              <span className='icon is-small is-left'>
-                <i className='fas fa-user'></i>
-              </span>
-            </p>
-          </div>
-          <div className='field'>
-            <p className='control is-expanded has-icons-left'>
-              <input
-                className='input is-success'
-                type='email'
-                placeholder='Email'
-                name='email'
-                onChange={onChange}
-                value={form.email}
-              />
-              <span className='icon is-small is-left'>
-                <i className='fas fa-envelope'></i>
-              </span>
-              {/* <span className='icon is-small is-right'>
-                <i className='fas fa-check'></i>
-              </span> */}
-            </p>
-          </div>
+          <Input
+            className='input'
+            type='text'
+            icon='person'
+            placeholder='Username'
+            name='username'
+            onChange={onChange}
+            value={form.username}
+          />
+          <Input
+            className='input is-success'
+            type='email'
+            icon='email'
+            placeholder='Email'
+            name='email'
+            onChange={onChange}
+            value={form.email}
+          />
         </div>
       </div>
 
@@ -84,18 +70,14 @@ export default function ProfileForm () {
           <label className='label'>Fullname</label>
         </div>
         <div className='field-body'>
-          <div className='field'>
-            <p className='control is-expanded'>
-              <input
-                className='input'
-                type='text'
-                placeholder='First name'
-                name='fullname'
-                onChange={onChange}
-                value={form.fullname}
-              />
-            </p>
-          </div>
+          <Input
+            className='input'
+            type='text'
+            placeholder='First name'
+            name='fullname'
+            onChange={onChange}
+            value={form.fullname}
+          />
         </div>
       </div>
       <div className='field is-horizontal'>
